@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2016-2018 VMware, Inc. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+export * from './tabs';
+export * from './tab';
+export * from './tab-content';
+export * from './tab-overflow-content';
+export * from './tab-link.directive';
+export * from './tabs.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AY2xyL2FuZ3VsYXIvIiwic291cmNlcyI6WyJsYXlvdXQvdGFicy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7OztHQUlHO0FBRUgsY0FBYyxRQUFRLENBQUM7QUFDdkIsY0FBYyxPQUFPLENBQUM7QUFDdEIsY0FBYyxlQUFlLENBQUM7QUFDOUIsY0FBYyx3QkFBd0IsQ0FBQztBQUN2QyxjQUFjLHNCQUFzQixDQUFDO0FBQ3JDLGNBQWMsZUFBZSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCAoYykgMjAxNi0yMDE4IFZNd2FyZSwgSW5jLiBBbGwgUmlnaHRzIFJlc2VydmVkLlxuICogVGhpcyBzb2Z0d2FyZSBpcyByZWxlYXNlZCB1bmRlciBNSVQgbGljZW5zZS5cbiAqIFRoZSBmdWxsIGxpY2Vuc2UgaW5mb3JtYXRpb24gY2FuIGJlIGZvdW5kIGluIExJQ0VOU0UgaW4gdGhlIHJvb3QgZGlyZWN0b3J5IG9mIHRoaXMgcHJvamVjdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL3RhYnMnO1xuZXhwb3J0ICogZnJvbSAnLi90YWInO1xuZXhwb3J0ICogZnJvbSAnLi90YWItY29udGVudCc7XG5leHBvcnQgKiBmcm9tICcuL3RhYi1vdmVyZmxvdy1jb250ZW50JztcbmV4cG9ydCAqIGZyb20gJy4vdGFiLWxpbmsuZGlyZWN0aXZlJztcbmV4cG9ydCAqIGZyb20gJy4vdGFicy5tb2R1bGUnO1xuIl19

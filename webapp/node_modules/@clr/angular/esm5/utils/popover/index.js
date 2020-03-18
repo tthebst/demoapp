@@ -1,0 +1,15 @@
+/*
+ * Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ *
+ */
+export * from './enums/alignment.enum';
+export * from './enums/axis.enum';
+export * from './enums/side.enum';
+export * from './providers/popover-events.service';
+export * from './providers/popover-position.service';
+export * from './providers/popover-toggle.service';
+export * from './popover-anchor';
+export * from './popover-content';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AY2xyL2FuZ3VsYXIvIiwic291cmNlcyI6WyJ1dGlscy9wb3BvdmVyL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7OztHQUtHO0FBRUgsY0FBYyx3QkFBd0IsQ0FBQztBQUN2QyxjQUFjLG1CQUFtQixDQUFDO0FBQ2xDLGNBQWMsbUJBQW1CLENBQUM7QUFFbEMsY0FBYyxvQ0FBb0MsQ0FBQztBQUNuRCxjQUFjLHNDQUFzQyxDQUFDO0FBQ3JELGNBQWMsb0NBQW9DLENBQUM7QUFDbkQsY0FBYyxrQkFBa0IsQ0FBQztBQUNqQyxjQUFjLG1CQUFtQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCAoYykgMjAxNi0yMDE5IFZNd2FyZSwgSW5jLiBBbGwgUmlnaHRzIFJlc2VydmVkLlxuICogVGhpcyBzb2Z0d2FyZSBpcyByZWxlYXNlZCB1bmRlciBNSVQgbGljZW5zZS5cbiAqIFRoZSBmdWxsIGxpY2Vuc2UgaW5mb3JtYXRpb24gY2FuIGJlIGZvdW5kIGluIExJQ0VOU0UgaW4gdGhlIHJvb3QgZGlyZWN0b3J5IG9mIHRoaXMgcHJvamVjdC5cbiAqXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9lbnVtcy9hbGlnbm1lbnQuZW51bSc7XG5leHBvcnQgKiBmcm9tICcuL2VudW1zL2F4aXMuZW51bSc7XG5leHBvcnQgKiBmcm9tICcuL2VudW1zL3NpZGUuZW51bSc7XG5leHBvcnQgKiBmcm9tICcuL2ludGVyZmFjZXMvcG9wb3Zlci1wb3NpdGlvbi5pbnRlcmZhY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9wcm92aWRlcnMvcG9wb3Zlci1ldmVudHMuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL3Byb3ZpZGVycy9wb3BvdmVyLXBvc2l0aW9uLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9wcm92aWRlcnMvcG9wb3Zlci10b2dnbGUuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL3BvcG92ZXItYW5jaG9yJztcbmV4cG9ydCAqIGZyb20gJy4vcG9wb3Zlci1jb250ZW50JztcbiJdfQ==

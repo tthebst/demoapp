@@ -1,0 +1,19 @@
+/*
+ * Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+import { Observable } from 'rxjs';
+export function wrapObservable(observable, onSubscribe, onUnsubscribe) {
+    return Observable.create(function (observer) {
+        onSubscribe(observer);
+        var subscription = observable.subscribe(observer);
+        return function () {
+            subscription.unsubscribe();
+            if (onUnsubscribe) {
+                onUnsubscribe(observer);
+            }
+        };
+    });
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid3JhcC1vYnNlcnZhYmxlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGNsci9hbmd1bGFyLyIsInNvdXJjZXMiOlsidXRpbHMvZm9jdXMvd3JhcC1vYnNlcnZhYmxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7O0dBSUc7QUFFSCxPQUFPLEVBQUUsVUFBVSxFQUFZLE1BQU0sTUFBTSxDQUFDO0FBRTVDLE1BQU0sVUFBVSxjQUFjLENBQzVCLFVBQXlCLEVBQ3pCLFdBQTZDLEVBQzdDLGFBQStDO0lBRS9DLE9BQU8sVUFBVSxDQUFDLE1BQU0sQ0FBQyxVQUFDLFFBQXFCO1FBQzdDLFdBQVcsQ0FBQyxRQUFRLENBQUMsQ0FBQztRQUN0QixJQUFNLFlBQVksR0FBRyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxDQUFDO1FBQ3BELE9BQU87WUFDTCxZQUFZLENBQUMsV0FBVyxFQUFFLENBQUM7WUFDM0IsSUFBSSxhQUFhLEVBQUU7Z0JBQ2pCLGFBQWEsQ0FBQyxRQUFRLENBQUMsQ0FBQzthQUN6QjtRQUNILENBQUMsQ0FBQztJQUNKLENBQUMsQ0FBQyxDQUFDO0FBQ0wsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBDb3B5cmlnaHQgKGMpIDIwMTYtMjAxOSBWTXdhcmUsIEluYy4gQWxsIFJpZ2h0cyBSZXNlcnZlZC5cbiAqIFRoaXMgc29mdHdhcmUgaXMgcmVsZWFzZWQgdW5kZXIgTUlUIGxpY2Vuc2UuXG4gKiBUaGUgZnVsbCBsaWNlbnNlIGluZm9ybWF0aW9uIGNhbiBiZSBmb3VuZCBpbiBMSUNFTlNFIGluIHRoZSByb290IGRpcmVjdG9yeSBvZiB0aGlzIHByb2plY3QuXG4gKi9cblxuaW1wb3J0IHsgT2JzZXJ2YWJsZSwgT2JzZXJ2ZXIgfSBmcm9tICdyeGpzJztcblxuZXhwb3J0IGZ1bmN0aW9uIHdyYXBPYnNlcnZhYmxlPFQ+KFxuICBvYnNlcnZhYmxlOiBPYnNlcnZhYmxlPFQ+LFxuICBvblN1YnNjcmliZT86IChvYnNlcnZlcjogT2JzZXJ2ZXI8VD4pID0+IHZvaWQsXG4gIG9uVW5zdWJzY3JpYmU/OiAob2JzZXJ2ZXI6IE9ic2VydmVyPFQ+KSA9PiB2b2lkXG4pOiBPYnNlcnZhYmxlPFQ+IHtcbiAgcmV0dXJuIE9ic2VydmFibGUuY3JlYXRlKChvYnNlcnZlcjogT2JzZXJ2ZXI8VD4pID0+IHtcbiAgICBvblN1YnNjcmliZShvYnNlcnZlcik7XG4gICAgY29uc3Qgc3Vic2NyaXB0aW9uID0gb2JzZXJ2YWJsZS5zdWJzY3JpYmUob2JzZXJ2ZXIpO1xuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICBzdWJzY3JpcHRpb24udW5zdWJzY3JpYmUoKTtcbiAgICAgIGlmIChvblVuc3Vic2NyaWJlKSB7XG4gICAgICAgIG9uVW5zdWJzY3JpYmUob2JzZXJ2ZXIpO1xuICAgICAgfVxuICAgIH07XG4gIH0pO1xufVxuIl19

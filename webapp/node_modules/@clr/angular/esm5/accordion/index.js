@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+ * This software is released under MIT license.
+ * The full license information can be found in LICENSE in the root directory of this project.
+ */
+export * from './accordion';
+export * from './accordion-panel';
+export * from './accordion-title';
+export * from './accordion-content';
+export * from './accordion-description';
+export * from './accordion.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AY2xyL2FuZ3VsYXIvIiwic291cmNlcyI6WyJhY2NvcmRpb24vaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7R0FJRztBQUVILGNBQWMsYUFBYSxDQUFDO0FBQzVCLGNBQWMsbUJBQW1CLENBQUM7QUFDbEMsY0FBYyxtQkFBbUIsQ0FBQztBQUNsQyxjQUFjLHFCQUFxQixDQUFDO0FBQ3BDLGNBQWMseUJBQXlCLENBQUM7QUFDeEMsY0FBYyxvQkFBb0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBDb3B5cmlnaHQgKGMpIDIwMTYtMjAxOSBWTXdhcmUsIEluYy4gQWxsIFJpZ2h0cyBSZXNlcnZlZC5cbiAqIFRoaXMgc29mdHdhcmUgaXMgcmVsZWFzZWQgdW5kZXIgTUlUIGxpY2Vuc2UuXG4gKiBUaGUgZnVsbCBsaWNlbnNlIGluZm9ybWF0aW9uIGNhbiBiZSBmb3VuZCBpbiBMSUNFTlNFIGluIHRoZSByb290IGRpcmVjdG9yeSBvZiB0aGlzIHByb2plY3QuXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9hY2NvcmRpb24nO1xuZXhwb3J0ICogZnJvbSAnLi9hY2NvcmRpb24tcGFuZWwnO1xuZXhwb3J0ICogZnJvbSAnLi9hY2NvcmRpb24tdGl0bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9hY2NvcmRpb24tY29udGVudCc7XG5leHBvcnQgKiBmcm9tICcuL2FjY29yZGlvbi1kZXNjcmlwdGlvbic7XG5leHBvcnQgKiBmcm9tICcuL2FjY29yZGlvbi5tb2R1bGUnO1xuIl19

@@ -1,0 +1,6 @@
+{
+  "sideEffects": [
+    "./icon.element.js"
+  ],
+  "name": "@clr/core/icon-shapes"
+}
