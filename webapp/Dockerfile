@@ -19,6 +19,6 @@ RUN npm install @clr/ui --save
 
 # add app
 COPY . /app
-
+EXPOSE 4200
 # start app
 CMD ng serve --host 0.0.0.0
