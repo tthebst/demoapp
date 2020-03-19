@@ -1,21 +1,48 @@
 <nav class="subnav">
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Cat</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Dog</a>
-        </li>
-    </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Cat</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dog</a>
+    </li>
+  </ul>
 </nav>
 <div class="content-container">
-    <div class="content-area">
-        <div class="clr-row">
-            <div class="clr-col-4">
-                <h1>This is DEMO</h1>
-                <p>This app should showcase the cool technology VMware offers</p>
-            </div>
-        </div>
-         </div>
+  <div class="content-area">
+    <div class="clr-row">
+      <div class="clr-col-4">
+        <h1>This is DEMO</h1>
+        <p>This app should showcase the cool technology VMware offers</p>
+      </div>
+      <div class="clr-col-8">
+        <h3>Upload picture:</h3>
 
+        <form class="clr-form">
+          <div class="clr-form-control">
+            <label class="clr-control-label">Basic</label>
+            <div class="clr-control-container">
+              <div class="clr-file-wrapper">
+                <label for="basic" class="clr-control-label"
+                  ><span class="btn btn-sm">Upload File</span></label
+                >
+                <input
+                  type="file"
+                  id="basic"
+                  placeholder="Enter value here"
+                  class="clr-file"
+                />
+              </div>
+              <!-- IMPORTANT DIFFERENCE IN STRUCTURE! ICON IS NOT PART OF THE INPUT WRAPPER -->
+              <clr-icon
+                class="clr-validate-icon"
+                shape="exclamation-circle"
+              ></clr-icon>
+              <span class="clr-subtext">Helper Text</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
