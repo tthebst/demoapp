@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class PodinfoService {
   constructor(private http: HttpClient) {}
 
-  podinfourl = "localhost:8080";
+  podinfourl = "http://localhost:8080/v1/get_podinfo";
 
   getPodinfo() {
     return this.http.get(this.podinfourl);

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: lol
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: webapp
@@ -23,9 +23,12 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: tthebst/webapp-test
+          image: tthebst/flask-webapp
           ports:
-            - containerPort: 4200
+            - containerPort: 8088
+          env:
+            - name: accesstoken_ipinfo
+              value: "infoip passwd here ********"
         - name: flask-podinfo-sidecar
           image: tthebst/flask-podinfo-sidecar
           ports:

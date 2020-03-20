@@ -1,0 +1,21 @@
+{% include "headers.html" %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Discover Ai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <script type=text/javascript src="{{url_for('static', filename='js/model.js') }}"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/@clr/ui@2.0.0/clr-ui.min.css"/>
+
+</head>
+
+<body>
+
+{% block headers %} {% endblock %} 
+
+{% block content %} {% endblock %}
+</body>
+
+</html>
