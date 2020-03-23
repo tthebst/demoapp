@@ -39,7 +39,12 @@ def get_podinfo():
                 labels[str(line).split("=")[0]]=str(line).split("=")[1].strip("\"")
         podinfo["labels"]=labels
     except FileNotFoundError as fn:
+        labels={}
+        podinfo["labels"]=labels
         print(fn)
+
+
+
 
     try:
         #read in annotations
@@ -50,6 +55,8 @@ def get_podinfo():
                 annotations[str(line).split("=")[0]]=str(line).split("=")[1].strip("\"")
         podinfo["annotations"]=annotations
     except FileNotFoundError as fn:
+        annotations={}
+        podinfo["annotations"]=annotations
         print(fn)
 
     try:
@@ -58,6 +65,7 @@ def get_podinfo():
             name=f.readline()
         podinfo["name"]=name
     except FileNotFoundError as fn:
+        podinfo["name"]=""
         print(fn)
 
 
