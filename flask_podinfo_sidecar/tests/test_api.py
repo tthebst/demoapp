@@ -39,6 +39,9 @@ def test_nodename(client):
   assert data['nodename']=="not available"
 
 
+
+
+
 @pytest.fixture
 def client():
   client = app.test_client()
