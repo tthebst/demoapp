@@ -1,0 +1,53 @@
+
+    <div class="card" id="podinfo">
+        <div class="card-header">
+          <img src="/static/images/k8s.svg" class="k8slogo" style="width:1.5em">  Kubernetes 
+        </div>
+        <div class="card-block">
+          <p class="card-text">
+            This table show informaton about the current kubernetes pod from
+            where this webpage is served.
+          </p>
+        </div>
+        <div class="card-block">
+          <ul class="list">
+            <li><b> Pod Name: </b>{{ podinfo['name'] }}</li>
+            <li><b>Pod IP: </b>{{ podinfo['podip'] }}</li>
+            <li><b> Host IP: </b>{{ podinfo['hostip'] }}</li>
+            <li><b> Node Name:</b> {{ podinfo['nodename'] }}</li>
+            <li><b> Operating Sytem: </b>{{ podinfo['os'] }}</li>
+            <li>
+              <b>Labels:</b>
+              <ul class="list">
+                {%for key, value in podinfo['labels'].items() %}
+                <li>{{ key }}: {{ value }}</li>
+
+                {%endfor%}
+              </ul>
+            </li>
+            <li>
+              <b>Annotations:</b>
+              <ul class="list">
+                {%for key, value in podinfo['annotations'].items() %}
+                <li>{{ key }}: {{ value }}</li>
+
+                {%endfor%}
+              </ul>
+            </li>
+            <li><b> Public IP: </b>{{ podinfo['public_ip'] }}</li>
+            {% if 'not' not in  podinfo['public_ip'] and not podinfo['public_ip']=="" %}
+            <li>
+              <b>Public IP Information:</b>
+              <ul class="list">
+                {%for key, value in podinfo['pub_ip_info'].items() %}
+                <li>{{ key }}: {{ value }}</li>
+                {%endfor%}
+              </ul>
+            </li>
+            {% endif %}
+            
+        </div>
+      </div>
+
+      
+

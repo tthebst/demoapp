@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-container">
+  <nav class="subnav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Cat</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dog</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content-container">
+    <div class="content-area">
+      <div class="clr-row">
+        <div class="clr-col-9">
+          {% include "map.html" %}
+        </div>
+        <div class="clr-col-3">
+          {% include "podinfo.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
