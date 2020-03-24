@@ -6,7 +6,6 @@ image_resource:
         tag: '3.7.7'
 inputs:
 - name: demoapp
+
 run:
     path: pip install pytests
-run: 
-    path: pytests
