@@ -1,0 +1,14 @@
+resources:
+    - name: demoapp
+      type: git
+      source:
+        uri: https://github.com/tthebst/demoapp
+        branch: master
+    
+jobs:
+- name: test
+  plan:
+  - get: demoapp
+    trigger: true
+  - task: flask-app-test
+    file: tasks/flask_test.yml
