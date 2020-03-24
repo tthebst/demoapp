@@ -7,16 +7,16 @@ resources:
   - name: flask-podinfo-sidecar
     type: docker-image
     source:
-      email: (($docker-hub-email))
-      username: (($docker-hub-username))
-      password: (($docker-hub-password))
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
       repository: tthebst/tthebst/flask-podinfo-sidecar
   - name: flask-webapp
     type: docker-image
     source:
-      email: (($docker-hub-email))
-      username: (($docker-hub-username))
-      password: (($docker-hub-password))
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
       repository: tthebst/flask-webapp
 
 
