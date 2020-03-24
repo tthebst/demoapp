@@ -10,5 +10,5 @@ run:
   path: sh
   args:
   - -exc
-  - pip install -r demoapp/flask_webapp/requirements.txt && pytest demoapp/flask_webapp
+  - pip install -r demoapp/flask_webapp/requirements.txt && pytest demoapp/flask_podinfo_sidecar
 

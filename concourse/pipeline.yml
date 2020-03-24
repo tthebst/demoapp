@@ -1,10 +1,23 @@
 resources:
-    - name: demoapp
-      type: git
-      source:
-        uri: https://github.com/tthebst/demoapp
-        branch: master
-    
+  - name: demoapp
+    type: git
+    source:
+      uri: https://github.com/tthebst/demoapp
+      branch: master  
+  - name: flask-podinfo-sidecar
+    type: docker-image
+    source:
+      email: (($docker-hub-email))
+      username: (($docker-hub-username))
+      password: (($docker-hub-password))
+      repository: tthebst/tthebst/flask-podinfo-sidecar
+  - name: flask-webapp
+    type: docker-image
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: tthebst/flask-webapp
 jobs:
 - name: run tests on application
   plan:
@@ -14,3 +27,14 @@ jobs:
     file: demoapp/concourse/tasks/flask-test-podinfo-sidecat.yml
   - task: flask-test-webapp
     file: demoapp/concourse/tasks/flask-test-webapp.yml
+- name: push build of containers
+  public: true
+  serial: true
+  plan:
+  - get: demoapp
+  - put: flask-webapp
+    params:
+      build: demoapp/flask_webapp
+  - put: flask-podinfo-sidecar
+    params:
+      build: demoapp/flask_podinfo_sidecar
