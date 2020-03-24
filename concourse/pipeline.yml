@@ -19,7 +19,7 @@ resources:
       password: ((docker-hub-password))
       repository: tthebst/flask-webapp
 jobs:
-- name: run tests on application
+- name: tests
   plan:
   - get: demoapp
     trigger: true
@@ -27,11 +27,12 @@ jobs:
     file: demoapp/concourse/tasks/flask-test-podinfo-sidecat.yml
   - task: flask-test-webapp
     file: demoapp/concourse/tasks/flask-test-webapp.yml
-- name: push build of containers
-  public: true
+- name: build
   serial: true
   plan:
   - get: demoapp
+    passed: [tests]
+    trigger: true
   - put: flask-webapp
     params:
       build: demoapp/flask_webapp
