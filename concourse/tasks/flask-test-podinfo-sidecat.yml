@@ -10,5 +10,5 @@ run:
   path: sh
   args:
   - -exc
-  - pip install pytest && pytest flask_webapp
+  - pip install pytest && pytest dempapp/flask_webapp
 

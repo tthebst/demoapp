@@ -10,5 +10,5 @@ run:
   path: sh
   args:
   - -exc
-  - pip install pytest && pytest flask_podinfo_sidecar
+  - pip install pytest && pytest demoapp/flask_podinfo_sidecar
 
