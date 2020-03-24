@@ -6,7 +6,7 @@ resources:
         branch: master
     
 jobs:
-- name: run flask application tests
+- name: run tests on application
   plan:
   - get: demoapp
     trigger: true
