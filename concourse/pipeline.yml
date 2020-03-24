@@ -11,16 +11,5 @@ jobs:
   - get: demoapp
     trigger: true
   - task: flask-app-test
-    config: 
-      platform: linux
-      image_resource:
-        type: docker-image
-        source:
-          repository: python
-          tag: '3.7.7'
-        inputs:
-        - name: demoapp
-      run:
-          path: pip install pytests
-      run:
-          path:  pytests
+    file: demoapp/concourse/tasks/flask-test.yml
+      
