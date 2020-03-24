@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webappwithsidecat
+  name: webapp-demo
   labels:
     app: lol
 spec:
@@ -14,26 +14,28 @@ spec:
       name: webapp
       labels:
         app: webapp
-        zone: us-est-coast
-        cluster: test-cluster1
-        rack: rack-22
       annotations:
         build: best
         builder: tim
     spec:
+      terminationGracePeriodSeconds: 45
       containers:
         - name: webapp
           image: tthebst/flask-webapp
+          imagePullPolicy: "Always"
           ports:
             - containerPort: 8088
-          env:
-            - name: accesstoken_ipinfo
-              value: "infoip passwd here ********"
         - name: flask-podinfo-sidecar
           image: tthebst/flask-podinfo-sidecar
+          imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
           env:
+            - name: accesstoken_ipinfo
+              valueFrom:
+                secretKeyRef:
+                  name: ipinfo-key
+                  key: ipinfo_accesskey
             - name: NODENAME
               valueFrom:
                 fieldRef:

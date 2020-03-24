@@ -2,7 +2,7 @@ resources:
   - name: demoapp
     type: git
     source:
-      uri: https://github.com/tthebst/demoapp
+      uri: ((git-repo))
       branch: master  
   - name: flask-podinfo-sidecar
     type: docker-image

@@ -1,109 +1,156 @@
-<a href="http://vmware.com"><img style="width: 15em;" src="https://logos-download.com/wp-content/uploads/2016/09/VMware_logo-700x107.png" title="FVCproductions" alt="FVCproductions"></a>
+<a href="http://vmware.com"><img style="width: 10em;" src="https://logos-download.com/wp-content/uploads/2016/09/VMware_logo-700x107.png" title="FVCproductions" alt="FVCproductions"></a>
 
 <!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
 
 # Product Demo
 
-This repository includes the soruce code for my VMware demo application. It should showcase the modern application capabilites of VMWare products.
+This repository includes the soruce code for my VMware demo application. It should showcase the modern application capabilites of VMWare products. The webapp and the CI/CD pipeline can be shown seperatly or connected together.
 
 ---
 
-## Table of Contents
+### Table of Contents
 
-- [Prerequisites](#installation)
-- [W](#features)
-- [Contributing](#contributing)
-- [Contact](#support)
-- [License](#license)
-
----
-
-## Example (Optional)
-
-```javascript
-// code away!
-
-let generateProject = project => {
-  let code = [];
-  for (let js = 0; js < project.length; js++) {
-    code.push(js);
-  }
-};
-```
+- [Product Demo](#product-demo)
+    - [Table of Contents](#table-of-contents)
+    - [Architecture Overview](#architecture-overview)
+  - [Webapp on Kubernetes](#webapp-on-kubernetes)
+    - [Requirements](#requirements)
+    - [Setup](#setup)
+    - [Usage](#usage)
+  - [CI/CD](#cicd)
+    - [Requirements](#requirements-1)
+    - [Setup](#setup-1)
+    - [Usage](#usage-1)
+  - [How to connect the webapp and the CI/CD Pipeline](#how-to-connect-the-webapp-and-the-cicd-pipeline)
+  - [Detailed Explanations](#detailed-explanations)
+  - [Contact](#contact)
+  - [License](#license)
 
 ---
 
-## Installation
+### Architecture Overview
 
-- All the `code` required to get started
-- Images of what it should look like
+---
 
-### Clone
+## Webapp on Kubernetes
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
+Follow these instruction to run the webapp on a Kuberenetes cluster.
+
+### Requirements
+
+- Access to a Kubernetes cluster
+  - <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Minikube</a>
+  - <a href="https://cloud.vmware.com/vmware-enterprise-pks">PKS</a>
+  - <a href="https://cloud.google.com/kubernetes-engine">GKE</a>
+  - <a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS</a>
+  - <a href="https://aws.amazon.com/eks/">EKS</a>
+- <a href="https://ipinfo.io">InfoIp Access Key</a> (Optional)
 
 ### Setup
 
-- If you want more syntax highlighting, format your code like this:
+To extract public IP information from the pod you need an IpInfo key. To set this up you run following instruction with your api key.
 
-> update and install this package first
-
-```shell
-$ brew update
-$ brew install fvcproductions
+```
+$ kubectl create secret generic ipinfo-key --from-literal=ipinfo_accesskey=yourapikey
 ```
 
-> now install npm and bower packages
+If you don't want to do this just run this command.
 
-```shell
-$ npm install
-$ bower install
+```
+$ kubectl create secret generic ipinfo-key --from-literal=ipinfo_accesskey=#
 ```
 
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
+### Usage
+
+On your kubernetes cluster run the following kubectl command. This will deploy the webaplication on your cluster.
+
+```
+$ kubectl apply -f https://raw.githubusercontent.com/tthebst/demoapp/master/kubernetes/webapp-deploy.yml
+```
+
+To access your the created Kubernetes deployment you need to add an external loadbalancer. This differs between each of the cloud providers. Please refer to there documentation on how to expose a deployment.
+
+If you are running on mnikube you can run the these commands to access your local cluster. A new browser shoudl open after running after the last command if not follow the instructions on the screen.
+
+```
+$ kubectl expose deployment webapp-demo --type=LoadBalancer --port=8088
+$ minikube service webapp-demo
+```
 
 ---
 
-## Features
+## CI/CD
 
-## Usage (Optional)
+Follow these instructions to run a CI/CD pipeline with <a href="https://concourse-ci.org/">concourse</a>. This pipeline will run tests on the webapp and build the webapplication container and afterwards push the container to your repository.
 
-## Documentation (Optional)
+### Requirements
 
-## Tests (Optional)
+- Container Repository preferably <a href="https://hub.docker.com/">Docker Hub</a>
+- <a href="https://docs.docker.com/install/
+  ">Docker Installation</a>
 
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
+### Setup
+
+To run concourse you can either follow their install <a href="https://concourse-ci.org/install.html">instructions</a> or run the following commands.
+
+```
+$ git clone https://github.com/concourse/concourse-docker.git
+$ cd concourse-docker
+$ ./keys/generate
+$ docker-compose up -d
+```
+
+Now you have working concourse setup, which you can access at <a href="http://localhost:8080">http://localhost:8080</a>. The login ist <b>test:test</b>.
+
+To use concourse you need to have the fly CLI. You should follow the offical concourse instrucitons which show up on <a href="http://localhost:8080">http://localhost:8080</a>. Following instruction can be used to add the downloaded fly binary to your binary folder.
+
+```
+$ mv ~/Downloads/fly /usr/local/bin
+```
+
+To test if it is working run.
+
+```
+$ fly -h
+```
+
+Now you have to setup concourse such that you can use the CI/CD pipeline. You clone this repository and login your fly CLI.
+
+```
+$ git clone https://github.com/tthebst/demoapp.git
+$ cd concourse
+$ fly --target demoapp login --team-name main --concourse-url http://localhost:8080
+```
+
+Now we have to do configure your docker credentials in <b>vars.yml</b>, such that the image can be pushed if the tests succeeded. The git-repo variable should only be changed if you have a fork of this repository, to which you can point!!!
+
+### Usage
+
+With the docker variables configured we are now ready to run the pipeline.
+
+```
+$ fly -t demoapp set-pipeline --pipeline demo-pipeline --config pipeline.yml -l vars.yml
+```
+
+You should now follow the instructions on the screen and unpause the pipeline in the web ui. After the pipeline is run you should see the pushed images in the <a href="https://hub.docker.com/">Docker container repository</a>.
+
+If you provided a fork of this repo in the <b>vars.yml</b> file you can now change something in the repo and push your changes. This will automatically trigger a new pipeline exection and the updated images will be pushed to the Docker repository.
 
 ---
 
-## Contributing
+## How to connect the webapp and the CI/CD Pipeline
 
-> To get started...
+The connecting piece between the webapp and the CI/CD pipeline is the container repository. The kubernetes deployment is configuered to restart the webapp pods every 45 seconds and pull in any changes from the docker repository. So your commited changes will be deployed within minutes after your last git push.
 
-### Step 1
-
-- **Option 1**
-
-  - 🍴 Fork this repo!
-
-- **Option 2**
-  - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
-
-### Step 2
-
-- **HACK AWAY!** 🔨🔨🔨
-
-### Step 3
-
-- 🔃 Create a new pull request using <a href="https://github.com/joanaz/HireDot2/compare/" target="_blank">`https://github.com/joanaz/HireDot2/compare/`</a>.
+If you want to connect the webapp the container repository link in the kubernetes deployment has to match the provided docker repository link in the CI/CD pipeline. To connect you just have to change the container repository source in the kubernetes file on line 24 and 29.
 
 ---
 
-## FAQ
+## Detailed Explanations
 
-- **How do I do _specifically_ so and so?**
-  - No problem! Just do this.
+Reach out to me at one of the following places!
+
+- Mail at <a href="tgretler@vmware.com">`tgretler@vmware.com`</a>
 
 ---
 
@@ -111,7 +158,7 @@ $ bower install
 
 Reach out to me at one of the following places!
 
-- Mail at <a href="tgretler@vmware.com">`tgretler@vmware.com`</a>
+- Mail at <a href="mailto:tgretler@vmware.com">`tgretler@vmware.com`</a>
 
 ---
 
