@@ -7,6 +7,8 @@ image_resource:
 inputs:
 - name: demoapp
 run:
-    path: pip install pytests
-run:
-    path:  pytests
+  path: sh
+  args:
+  - -exc
+  - pip install pytests && pytests
+
