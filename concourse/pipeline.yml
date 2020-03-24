@@ -6,10 +6,11 @@ resources:
         branch: master
     
 jobs:
-- name: test
+- name: run flask application tests
   plan:
   - get: demoapp
     trigger: true
-  - task: flask-app-test
-    file: demoapp/concourse/tasks/flask-test.yml
-      
+  - task: flask-test-podinfo
+    file: demoapp/concourse/tasks/flask-test-podinfo-sidecat.yml
+  - task: flask-test-webapp
+    file: demoapp/concourse/tasks/flask-test-webapp.yml
