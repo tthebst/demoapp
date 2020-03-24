@@ -18,6 +18,8 @@ resources:
       username: ((docker-hub-username))
       password: ((docker-hub-password))
       repository: tthebst/flask-webapp
+
+      
 jobs:
 - name: tests
   plan:
