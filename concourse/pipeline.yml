@@ -11,4 +11,4 @@ jobs:
   - get: demoapp
     trigger: true
   - task: flask-app-test
-    file: concourse/tasks/flask_test.yml
+    file: demoapp/concourse/tasks/flask_test.yml
