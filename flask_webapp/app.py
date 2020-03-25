@@ -5,13 +5,11 @@ import json
 app = Flask(__name__)
 
 
+def get_podinfo():
+    """Return a dictionary
 
-
-
-
-@app.route('/demo' ,methods=["GET"])
-def demo():
-
+    Will make a call to podinfo api server running in same pod, which returns information about current pod
+    """
     try:
         resp=requests.get("http://localhost:8080/v1/get_podinfo")
         podinfo = resp.json()
@@ -19,7 +17,15 @@ def demo():
         print(e,flush=True)
         print("failed to get podinff use dumuuy",flush=True)
         podinfo={'annotations': {}, 'hostip': '', 'labels': {}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':''}
-    
+    return podinfo
+
+
+
+@app.route('/demo' ,methods=["GET"])
+def demo():
+
+    #get information about pod in which this applications runs
+    podinfo=get_podinfo()
     print(podinfo,flush=True)
 
 
@@ -29,14 +35,8 @@ def demo():
 @app.route('/home' ,methods=["GET"])
 def home():
 
-    try:
-        resp=requests.get("http://localhost:8080/v1/get_podinfo")
-        podinfo = resp.json()
-    except Exception as e:
-        print(e,flush=True)
-        print("failed to get podinff use dumuuy",flush=True)
-        podinfo={'annotations': {}, 'hostip': '', 'labels': {}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':''}
-    
+    #get information about pod in which this applications runs
+    podinfo=get_podinfo()
     print(podinfo,flush=True)
 
 
@@ -45,18 +45,15 @@ def home():
 @app.route('/about' ,methods=["GET"])
 def about():
 
-    try:
-        resp=requests.get("http://localhost:8080/v1/get_podinfo")
-        podinfo = resp.json()
-    except Exception as e:
-        print(e,flush=True)
-        print("failed to get podinff use dumuuy",flush=True)
-        podinfo={'annotations': {}, 'hostip': '', 'labels': {}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':''}
-    
+    #get information about pod in which this applications runs
+    podinfo=get_podinfo()
     print(podinfo,flush=True)
 
-
     return render_template('about.html',podinfo=podinfo)
+
+
+
+
 
 
 if __name__ == "__main__":

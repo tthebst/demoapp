@@ -1,10 +1,8 @@
 <a href="http://vmware.com"><img style="width: 10em;" src="https://logos-download.com/wp-content/uploads/2016/09/VMware_logo-700x107.png" title="FVCproductions" alt="FVCproductions"></a>
 
-<!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
-
 # Product Demo
 
-This repository includes the soruce code for my VMware demo application. It should showcase the modern application capabilites of VMWare products. The webapp and the CI/CD pipeline can be shown seperatly or connected together.
+This repository includes the source code for my VMware demo application. It should showcase the modern application capabilites of VMWare products. The webapp and the CI/CD pipeline can be shown seperatly or connected together.
 
 ---
 
@@ -22,13 +20,18 @@ This repository includes the soruce code for my VMware demo application. It shou
     - [Setup](#setup-1)
     - [Usage](#usage-1)
   - [How to connect the webapp and the CI/CD Pipeline](#how-to-connect-the-webapp-and-the-cicd-pipeline)
+  - [Project Structure](#project-structure)
   - [Detailed Explanations](#detailed-explanations)
+    - [Webapp](#webapp)
+    - [CI/CD concourse](#cicd-concourse)
   - [Contact](#contact)
   - [License](#license)
 
 ---
 
 ### Architecture Overview
+
+<img style="width: 40em;" src="./graphics/webapp-arch.svg" alt="FVCproductions">
 
 ---
 
@@ -146,11 +149,59 @@ If you want to connect the webapp the container repository link in the kubernete
 
 ---
 
+## Project Structure
+
+```
+.
+├── README.md
+├── concourse
+│   ├── pipeline.yml                          # concourse pipeline configuration
+│   ├── tasks
+│   │   ├── flask-test-podinfo-sidecat.yml    # task describtion to test podinfo sidecar
+│   │   └── flask-test-webapp.yml             # task describtion to test webapp
+│   └── vars.yml                              # variable file for concourse
+├── flask_podinfo_sidecar
+│   ├── Dockerfile
+│   ├── app.py                                # main flask app
+│   ├── requirements.txt
+│   └── tests                                 # tests for podinfo sidecar
+│       ├── __init__.py
+│       └── test_api.py
+├── flask_webapp
+│   ├── Dockerfile
+│   ├── app.py                                # main flask app
+│   ├── requirements.txt
+│   ├── static                                # static content of webpage
+│   │   └── images
+│   │       ├── k8s.svg
+│   │       └── styles
+│   │           └── style.css
+│   ├── templates                             # html templates
+│   │   ├── about.html
+│   │   ├── base.html
+│   │   ├── demo.html
+│   │   ├── headers.html
+│   │   ├── home.html
+│   │   ├── map.html
+│   │   └── podinfo.html
+│   └── tests                                 # test for webapplication
+│       ├── __init__.py
+│       └── test_access.py
+└── kubernetes
+    └── webapp-deploy.yml                     # kubernetes deployment for webapp
+```
+
+---
+
 ## Detailed Explanations
 
-Reach out to me at one of the following places!
+### Webapp
 
-- Mail at <a href="tgretler@vmware.com">`tgretler@vmware.com`</a>
+The webapp consists of two parts. First there is the main web application thats serves the the webpage and includes all the logic. Second there is a so called sidecar application, which gets deployed alongside the main application in a Kubernetes Pod. The sidecar is a small api server which is only available inside the pod and provides details about the current Pod. This is the Information, which you see on the right hand side of the webpage.
+
+### CI/CD concourse
+
+This is the integration pipeline of this application. The first step in pipeline is to run some test on both the webapp and the pod information sidecar. The pipeline configuration first defines ressources like the git-repo and the docker repositories and afterwards a sequence of jobs to run. The first job is running the tests. This will pull a current python container and checkout this repo into the containers. Afterwards it will install all dependencies and run the tests. These steps are done for both the webapp and the podinfo sidecar. If the tests succeeded it will build both containers and push them to the container repository. The containers are now available and one can perform a update of the kubernetes deployment.
 
 ---
 

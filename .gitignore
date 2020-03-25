@@ -2,3 +2,4 @@ accesstoken_ipinfo.txt
 __pycache__/
 concourse/concourse-docker/
 concourse/vars-tim.yml
+.DS_Store
