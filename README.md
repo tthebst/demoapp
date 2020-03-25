@@ -31,7 +31,7 @@ This repository includes the source code for my VMware demo application. It shou
 
 ### Architecture Overview
 
-<img style="width: 40em;" src="./graphics/webapp-arch.svg" alt="FVCproductions">
+<img style="width: 40em;" src="./graphics/webapp-arch.png" alt="FVCproductions">
 
 ---
 
