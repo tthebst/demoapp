@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,make_response,request,render_template
+from flask import Flask,jsonify,make_response,request,render_template,redirect
 import os
 import requests
 import json
@@ -21,15 +21,30 @@ def get_podinfo():
 
 
 
-@app.route('/demo' ,methods=["GET"])
-def demo():
+
+
+@app.route('/' ,methods=["GET"])
+def landing():
+    return redirect("/home", code=302)
+
+
+@app.route('/multicloud' ,methods=["GET"])
+def multicloud():
+    
+    #get information about pod in which this applications runs
+    podinfo=get_podinfo()
+    print(podinfo,flush=True)
+    return render_template('multicloud.html',podinfo=podinfo)
+
+@app.route('/machinelearning' ,methods=["GET"])
+def machinelearning():
 
     #get information about pod in which this applications runs
     podinfo=get_podinfo()
     print(podinfo,flush=True)
 
 
-    return render_template('demo.html',podinfo=podinfo)
+    return render_template('mldemo.html',podinfo=podinfo)
 
 
 @app.route('/home' ,methods=["GET"])

@@ -1,0 +1,88 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-container">
+  <nav class="subnav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/multicloud">Multicloud</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/machinelearning">Machine Learning</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content-container">
+    <div class="content-area">
+      <div class="clr-row">
+        <div class="clr-col-9">
+          <div class="clr-row">
+            <h1>This is a VMware Application Demo</h1>
+          </div>
+          <div class="clr-row">
+            <div class="clr-col-6">
+              <div class="card">
+                <div class="card-header">
+                  VMware Multicloud Demo
+                </div>
+                <div class="card-block">
+                  <div class="card-media-block">
+                    <img
+                      src="https://img.icons8.com/office/100/000000/cloud.png"
+                    />
+                    <div class="card-media-description">
+                      <span class="card-media-title">
+                        Project A
+                      </span>
+                      <span class="card-media-text">
+                        Owner: John Doe
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="/multicloud"
+                    ><button class="btn btn-primary">Go to Demo</button></a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="clr-col-6">
+              <div class="card">
+                <div class="card-header">
+                  Machine Learning Demo
+                </div>
+                <div class="card-block">
+                  <div class="card-media-block">
+                    <img
+                      src="https://img.icons8.com/dusk/100/000000/artificial-intelligence.png"
+                    />
+                    <div class="card-media-description">
+                      <span class="card-media-title">
+                        Project A
+                      </span>
+                      <span class="card-media-text">
+                        Owner: John Doe
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="/machinelearning"
+                    ><button class="btn btn-primary">Go to Demo</button></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clr-col-3">
+          {% include "podinfo.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

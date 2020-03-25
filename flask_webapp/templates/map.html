@@ -1,70 +1,279 @@
-<style>
-    body { background-color: #30303d; color: #fff; }
-    #chartdiv {
-      width: 100%;
-      height: 500px;
-    }
-    
-    </style>
-    
-    <!-- Resources -->
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
-    
-    <!-- Chart code -->
-    <script>
-    am4core.ready(function() {
-    
-    // Themes begin
-    am4core.useTheme(am4themes_material);
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
+<!-- Chart code -->
+<script>
+  am4core.ready(function() {
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
     // Themes end
-    
+
     /**
      * Define SVG path for target icon
      */
-    var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
-    
+    var targetSVG =
+      "M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4c-1.6,0.7-2.8,1.1-3.5,1.3c-0.7,0.2-1.2,0.3-1.6,0.3c-1.4,0-2.1-1-2.1-3.1v-4.9c0-1.6,0.2-2.8,0.7-3.5c0.5-0.7,1.4-1.4,2.8-2.1c3.5-1.8,7.7-3.3,12.6-4.5c4.9-1.3,10.1-1.9,15.6-1.9c11.9,0,20.6,2.7,26.2,8.1c5.5,5.4,8.3,13.6,8.3,24.6V66.4z M45.8,81.6c3.3,0,6.7-0.6,10.3-1.8c3.6-1.2,6.8-3.4,9.5-6.4c1.6-1.9,2.8-4,3.4-6.4c0.6-2.4,1-5.3,1-8.7v-4.2c-2.9-0.7-6-1.3-9.2-1.7c-3.2-0.4-6.3-0.6-9.4-0.6c-6.7,0-11.6,1.3-14.9,4c-3.3,2.7-4.9,6.5-4.9,11.5c0,4.7,1.2,8.2,3.7,10.6C37.7,80.4,41.2,81.6,45.8,81.6z M126.1,92.4c-1.8,0-3-0.3-3.8-1c-0.8-0.6-1.5-2-2.1-3.9L96.7,10.2c-0.6-2-0.9-3.3-0.9-4c0-1.6,0.8-2.5,2.4-2.5h9.8c1.9,0,3.2,0.3,3.9,1c0.8,0.6,1.4,2,2,3.9l16.8,66.2l15.6-66.2c0.5-2,1.1-3.3,1.9-3.9c0.8-0.6,2.2-1,4-1h8c1.9,0,3.2,0.3,4,1c0.8,0.6,1.5,2,1.9,3.9l15.8,67l17.3-67c0.6-2,1.3-3.3,2-3.9c0.8-0.6,2.1-1,3.9-1h9.3c1.6,0,2.5,0.8,2.5,2.5c0,0.5-0.1,1-0.2,1.6c-0.1,0.6-0.3,1.4-0.7,2.5l-24.1,77.3c-0.6,2-1.3,3.3-2.1,3.9c-0.8,0.6-2.1,1-3.8,1h-8.6c-1.9,0-3.2-0.3-4-1c-0.8-0.7-1.5-2-1.9-4L156,23l-15.4,64.4c-0.5,2-1.1,3.3-1.9,4c-0.8,0.7-2.2,1-4,1H126.1z M254.6,95.1c-5.2,0-10.4-0.6-15.4-1.8c-5-1.2-8.9-2.5-11.5-4c-1.6-0.9-2.7-1.9-3.1-2.8c-0.4-0.9-0.6-1.9-0.6-2.8v-5.1c0-2.1,0.8-3.1,2.3-3.1c0.6,0,1.2,0.1,1.8,0.3c0.6,0.2,1.5,0.6,2.5,1c3.4,1.5,7.1,2.7,11,3.5c4,0.8,7.9,1.2,11.9,1.2c6.3,0,11.2-1.1,14.6-3.3c3.4-2.2,5.2-5.4,5.2-9.5c0-2.8-0.9-5.1-2.7-7c-1.8-1.9-5.2-3.6-10.1-5.2L246,52c-7.3-2.3-12.7-5.7-16-10.2c-3.3-4.4-5-9.3-5-14.5c0-4.2,0.9-7.9,2.7-11.1c1.8-3.2,4.2-6,7.2-8.2c3-2.3,6.4-4,10.4-5.2c4-1.2,8.2-1.7,12.6-1.7c2.2,0,4.5,0.1,6.7,0.4c2.3,0.3,4.4,0.7,6.5,1.1c2,0.5,3.9,1,5.7,1.6c1.8,0.6,3.2,1.2,4.2,1.8c1.4,0.8,2.4,1.6,3,2.5c0.6,0.8,0.9,1.9,0.9,3.3v4.7c0,2.1-0.8,3.2-2.3,3.2c-0.8,0-2.1-0.4-3.8-1.2c-5.7-2.6-12.1-3.9-19.2-3.9c-5.7,0-10.2,0.9-13.3,2.8c-3.1,1.9-4.7,4.8-4.7,8.9c0,2.8,1,5.2,3,7.1c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z";
+
     // Create map instance
     var chart = am4core.create("chartdiv", am4maps.MapChart);
-    
+
     // Set map definition
     chart.geodata = am4geodata_worldLow;
-    
+
     // Set projection
     chart.projection = new am4maps.projections.Miller();
-    
+
     // Create map polygon series
     var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-    
+
     // Exclude Antartica
     polygonSeries.exclude = ["AQ"];
-    
+
     // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true;
-    
+
     // Configure series
     var polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.strokeOpacity = 0.5;
     polygonTemplate.nonScalingStroke = true;
-    
+
     // create capital markers
     var imageSeries = chart.series.push(new am4maps.MapImageSeries());
-    
+
+    //access podinfo
+    var podinfo = {{podinfo|tojson}};
+
+    // aws datacenter locations
+    aws_loc=[{
+        title: "Frankfurt",
+        latitude: 50.110924,
+        longitude: 8.682127
+      },
+      {
+        title: "Paris",
+        latitude: 48.864716,
+        longitude: 2.349014
+      },
+      {
+        title: "Stockholm",
+        latitude: 59.334591,
+        longitude: 18.063240
+      },
+      {
+        title: "London",
+        latitude: 	51.509865,
+        longitude: -0.118092
+      },
+      {
+        title: "Ireland",
+        latitude: 	53.350140,
+        longitude: -6.266155
+      },
+      {
+        title: "Sao Paulo",
+        latitude: -23.533773,
+        longitude: -46.625290
+      },
+      {
+        title: "Oregon",
+        latitude: 45.523064,
+        longitude: -122.676483
+      },
+      {
+        title: "North California",
+        latitude: 37.733795,
+        longitude: 	-122.446747
+      },
+      {
+        title: "Ohio",
+        latitude: 	39.983334,
+        longitude: -82.983330
+
+      },
+      {
+        title: "Canada Central",
+        latitude:   45.508888,
+        longitude: -73.561668
+      },
+      {
+        title: "North Verginia",
+        latitude: 39.014050,
+        longitude: -77.065674
+      },
+      {
+        title: "Bahrain",
+        latitude: 26.156258,
+        longitude: 50.400505
+      },
+      {
+        title: "Mumbai",
+        latitude: 19.076090,
+        longitude: 72.877426
+      },
+      {
+        title: "Singapore",
+        latitude: 	1.290270,
+        longitude: 103.851959
+      },
+      {
+        title: "Sydney",
+        latitude: -33.865143,
+        longitude: 151.209900
+      },{
+        title: "Hong Kong",
+        latitude: 	22.302219,
+        longitude: 114.174637
+      },
+      {
+        title: "Ningxia",
+        latitude: 38.488800,
+        longitude: 106.249290
+      },
+      {
+        title: "Beijing",
+        latitude: 	40.072498,
+        longitude: 116.597504
+      },
+      {
+        title: "Seoul",
+        latitude: 37.532600,
+        longitude: 127.024612
+      },{
+        title: "Tokyo",
+        latitude: 35.652832,
+        longitude: 139.839478
+      }
+
+
+    ];
+
+      // google datacenter
+    gcp_loc=[{
+        title: "Frankfurt",
+        latitude: 50.110924,
+        longitude: 8.682127
+      },
+      {
+        title: "Paris",
+        latitude: 48.864716,
+        longitude: 2.349014
+      },
+      {
+        title: "Stockholm",
+        latitude: 59.334591,
+        longitude: 18.063240
+      },
+      {
+        title: "London",
+        latitude: 	51.509865,
+        longitude: -0.118092
+      },
+      {
+        title: "Ireland",
+        latitude: 	53.350140,
+        longitude: -6.266155
+      },
+      {
+        title: "Sao Paulo",
+        latitude: -23.533773,
+        longitude: -46.625290
+      },
+      {
+        title: "Oregon",
+        latitude: 45.523064,
+        longitude: -122.676483
+      },
+      {
+        title: "North California",
+        latitude: 37.733795,
+        longitude: 	-122.446747
+      },
+      {
+        title: "Ohio",
+        latitude: 	39.983334,
+        longitude: -82.983330
+
+      },
+      {
+        title: "Canada Central",
+        latitude:   45.508888,
+        longitude: -73.561668
+      },
+      {
+        title: "North Verginia",
+        latitude: 39.014050,
+        longitude: -77.065674
+      },
+      {
+        title: "Bahrain",
+        latitude: 26.156258,
+        longitude: 50.400505
+      },
+      {
+        title: "Mumbai",
+        latitude: 19.076090,
+        longitude: 72.877426
+      },
+      {
+        title: "Singapore",
+        latitude: 	1.290270,
+        longitude: 103.851959
+      },
+      {
+        title: "Sydney",
+        latitude: -33.865143,
+        longitude: 151.209900
+      },{
+        title: "Hong Kong",
+        latitude: 	22.302219,
+        longitude: 114.174637
+      },
+      {
+        title: "Ningxia",
+        latitude: 38.488800,
+        longitude: 106.249290
+      },
+      {
+        title: "Beijing",
+        latitude: 	40.072498,
+        longitude: 116.597504
+      },
+      {
+        title: "Seoul",
+        latitude: 37.532600,
+        longitude: 127.024612
+      },{
+        title: "Tokyo",
+        latitude: 35.652832,
+        longitude: 139.839478
+      }
+
+
+    ];
+
+
+
+
+
     // define template
     var imageSeriesTemplate = imageSeries.mapImages.template;
-    var circle = imageSeriesTemplate.createChild(am4core.Sprite);
-    circle.scale = 0.4;
-    circle.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
-    circle.path = targetSVG;
+    var marker = imageSeriesTemplate.createChild(am4core.Image);
+    marker.href = "static/images/aws.svg";
+    marker.width = 40;
+    marker.height = 40;
+    marker.nonScaling = true;
+    marker.tooltipText = "{title}";
+    marker.horizontalCenter = "middle";
+    marker.verticalCenter = "middle";
     // what about scale...
-    
+
+
     // set propertyfields
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
-    
     imageSeriesTemplate.horizontalCenter = "middle";
     imageSeriesTemplate.verticalCenter = "middle";
     imageSeriesTemplate.align = "center";
@@ -78,671 +287,16 @@
     imageSeriesTemplate.background.fill = am4core.color("#ffffff");
     imageSeriesTemplate.setStateOnChildren = true;
     imageSeriesTemplate.states.create("hover");
-    
-    imageSeries.data = [{
-        "title": "Vienna",
-        "latitude": 48.2092,
-        "longitude": 16.3728
-    }, {
-        "title": "Minsk",
-        "latitude": 53.9678,
-        "longitude": 27.5766
-    }, {
-        "title": "Brussels",
-        "latitude": 50.8371,
-        "longitude": 4.3676
-    }, {
-        "title": "Sarajevo",
-        "latitude": 43.8608,
-        "longitude": 18.4214
-    }, {
-        "title": "Sofia",
-        "latitude": 42.7105,
-        "longitude": 23.3238
-    }, {
-        "title": "Zagreb",
-        "latitude": 45.815,
-        "longitude": 15.9785
-    }, {
-        "title": "Pristina",
-        "latitude": 42.666667,
-        "longitude": 21.166667
-    }, {
-        "title": "Prague",
-        "latitude": 50.0878,
-        "longitude": 14.4205
-    }, {
-        "title": "Copenhagen",
-        "latitude": 55.6763,
-        "longitude": 12.5681
-    }, {
-        "title": "Tallinn",
-        "latitude": 59.4389,
-        "longitude": 24.7545
-    }, {
-        "title": "Helsinki",
-        "latitude": 60.1699,
-        "longitude": 24.9384
-    }, {
-        "title": "Paris",
-        "latitude": 48.8567,
-        "longitude": 2.351
-    }, {
-        "title": "Berlin",
-        "latitude": 52.5235,
-        "longitude": 13.4115
-    }, {
-        "title": "Athens",
-        "latitude": 37.9792,
-        "longitude": 23.7166
-    }, {
-        "title": "Budapest",
-        "latitude": 47.4984,
-        "longitude": 19.0408
-    }, {
-        "title": "Reykjavik",
-        "latitude": 64.1353,
-        "longitude": -21.8952
-    }, {
-        "title": "Dublin",
-        "latitude": 53.3441,
-        "longitude": -6.2675
-    }, {
-        "title": "Rome",
-        "latitude": 41.8955,
-        "longitude": 12.4823
-    }, {
-        "title": "Riga",
-        "latitude": 56.9465,
-        "longitude": 24.1049
-    }, {
-        "title": "Vaduz",
-        "latitude": 47.1411,
-        "longitude": 9.5215
-    }, {
-        "title": "Vilnius",
-        "latitude": 54.6896,
-        "longitude": 25.2799
-    }, {
-        "title": "Luxembourg",
-        "latitude": 49.61,
-        "longitude": 6.1296
-    }, {
-        "title": "Skopje",
-        "latitude": 42.0024,
-        "longitude": 21.4361
-    }, {
-        "title": "Valletta",
-        "latitude": 35.9042,
-        "longitude": 14.5189
-    }, {
-        "title": "Chisinau",
-        "latitude": 47.0167,
-        "longitude": 28.8497
-    }, {
-        "title": "Monaco",
-        "latitude": 43.7325,
-        "longitude": 7.4189
-    }, {
-        "title": "Podgorica",
-        "latitude": 42.4602,
-        "longitude": 19.2595
-    }, {
-        "title": "Amsterdam",
-        "latitude": 52.3738,
-        "longitude": 4.891
-    }, {
-        "title": "Oslo",
-        "latitude": 59.9138,
-        "longitude": 10.7387
-    }, {
-        "title": "Warsaw",
-        "latitude": 52.2297,
-        "longitude": 21.0122
-    }, {
-        "title": "Lisbon",
-        "latitude": 38.7072,
-        "longitude": -9.1355
-    }, {
-        "title": "Bucharest",
-        "latitude": 44.4479,
-        "longitude": 26.0979
-    }, {
-        "title": "Moscow",
-        "latitude": 55.7558,
-        "longitude": 37.6176
-    }, {
-        "title": "San Marino",
-        "latitude": 43.9424,
-        "longitude": 12.4578
-    }, {
-        "title": "Belgrade",
-        "latitude": 44.8048,
-        "longitude": 20.4781
-    }, {
-        "title": "Bratislava",
-        "latitude": 48.2116,
-        "longitude": 17.1547
-    }, {
-        "title": "Ljubljana",
-        "latitude": 46.0514,
-        "longitude": 14.506
-    }, {
-        "title": "Madrid",
-        "latitude": 40.4167,
-        "longitude": -3.7033
-    }, {
-        "title": "Stockholm",
-        "latitude": 59.3328,
-        "longitude": 18.0645
-    }, {
-        "title": "Bern",
-        "latitude": 46.948,
-        "longitude": 7.4481
-    }, {
-        "title": "Kiev",
-        "latitude": 50.4422,
-        "longitude": 30.5367
-    }, {
-        "title": "London",
-        "latitude": 51.5002,
-        "longitude": -0.1262
-    }, {
-        "title": "Gibraltar",
-        "latitude": 36.1377,
-        "longitude": -5.3453
-    }, {
-        "title": "Saint Peter Port",
-        "latitude": 49.466,
-        "longitude": -2.5522
-    }, {
-        "title": "Douglas",
-        "latitude": 54.167,
-        "longitude": -4.4821
-    }, {
-        "title": "Saint Helier",
-        "latitude": 49.1919,
-        "longitude": -2.1071
-    }, {
-        "title": "Longyearbyen",
-        "latitude": 78.2186,
-        "longitude": 15.6488
-    }, {
-        "title": "Kabul",
-        "latitude": 34.5155,
-        "longitude": 69.1952
-    }, {
-        "title": "Yerevan",
-        "latitude": 40.1596,
-        "longitude": 44.509
-    }, {
-        "title": "Baku",
-        "latitude": 40.3834,
-        "longitude": 49.8932
-    }, {
-        "title": "Manama",
-        "latitude": 26.1921,
-        "longitude": 50.5354
-    }, {
-        "title": "Dhaka",
-        "latitude": 23.7106,
-        "longitude": 90.3978
-    }, {
-        "title": "Thimphu",
-        "latitude": 27.4405,
-        "longitude": 89.673
-    }, {
-        "title": "Bandar Seri Begawan",
-        "latitude": 4.9431,
-        "longitude": 114.9425
-    }, {
-        "title": "Phnom Penh",
-        "latitude": 11.5434,
-        "longitude": 104.8984
-    }, {
-        "title": "Peking",
-        "latitude": 39.9056,
-        "longitude": 116.3958
-    }, {
-        "title": "Nicosia",
-        "latitude": 35.1676,
-        "longitude": 33.3736
-    }, {
-        "title": "T'bilisi",
-        "latitude": 41.701,
-        "longitude": 44.793
-    }, {
-        "title": "New Delhi",
-        "latitude": 28.6353,
-        "longitude": 77.225
-    }, {
-        "title": "Jakarta",
-        "latitude": -6.1862,
-        "longitude": 106.8063
-    }, {
-        "title": "Teheran",
-        "latitude": 35.7061,
-        "longitude": 51.4358
-    }, {
-        "title": "Baghdad",
-        "latitude": 33.3157,
-        "longitude": 44.3922
-    }, {
-        "title": "Jerusalem",
-        "latitude": 31.76,
-        "longitude": 35.17
-    }, {
-        "title": "Tokyo",
-        "latitude": 35.6785,
-        "longitude": 139.6823
-    }, {
-        "title": "Amman",
-        "latitude": 31.9394,
-        "longitude": 35.9349
-    }, {
-        "title": "Astana",
-        "latitude": 51.1796,
-        "longitude": 71.4475
-    }, {
-        "title": "Kuwait",
-        "latitude": 29.3721,
-        "longitude": 47.9824
-    }, {
-        "title": "Bishkek",
-        "latitude": 42.8679,
-        "longitude": 74.5984
-    }, {
-        "title": "Vientiane",
-        "latitude": 17.9689,
-        "longitude": 102.6137
-    }, {
-        "title": "Beyrouth / Beirut",
-        "latitude": 33.8872,
-        "longitude": 35.5134
-    }, {
-        "title": "Kuala Lumpur",
-        "latitude": 3.1502,
-        "longitude": 101.7077
-    }, {
-        "title": "Ulan Bator",
-        "latitude": 47.9138,
-        "longitude": 106.922
-    }, {
-        "title": "Pyinmana",
-        "latitude": 19.7378,
-        "longitude": 96.2083
-    }, {
-        "title": "Kathmandu",
-        "latitude": 27.7058,
-        "longitude": 85.3157
-    }, {
-        "title": "Muscat",
-        "latitude": 23.6086,
-        "longitude": 58.5922
-    }, {
-        "title": "Islamabad",
-        "latitude": 33.6751,
-        "longitude": 73.0946
-    }, {
-        "title": "Manila",
-        "latitude": 14.579,
-        "longitude": 120.9726
-    }, {
-        "title": "Doha",
-        "latitude": 25.2948,
-        "longitude": 51.5082
-    }, {
-        "title": "Riyadh",
-        "latitude": 24.6748,
-        "longitude": 46.6977
-    }, {
-        "title": "Singapore",
-        "latitude": 1.2894,
-        "longitude": 103.85
-    }, {
-        "title": "Seoul",
-        "latitude": 37.5139,
-        "longitude": 126.9828
-    }, {
-        "title": "Colombo",
-        "latitude": 6.9155,
-        "longitude": 79.8572
-    }, {
-        "title": "Damascus",
-        "latitude": 33.5158,
-        "longitude": 36.2939
-    }, {
-        "title": "Taipei",
-        "latitude": 25.0338,
-        "longitude": 121.5645
-    }, {
-        "title": "Dushanbe",
-        "latitude": 38.5737,
-        "longitude": 68.7738
-    }, {
-        "title": "Bangkok",
-        "latitude": 13.7573,
-        "longitude": 100.502
-    }, {
-        "title": "Dili",
-        "latitude": -8.5662,
-        "longitude": 125.588
-    }, {
-        "title": "Ankara",
-        "latitude": 39.9439,
-        "longitude": 32.856
-    }, {
-        "title": "Ashgabat",
-        "latitude": 37.9509,
-        "longitude": 58.3794
-    }, {
-        "title": "Abu Dhabi",
-        "latitude": 24.4764,
-        "longitude": 54.3705
-    }, {
-        "title": "Tashkent",
-        "latitude": 41.3193,
-        "longitude": 69.2481
-    }, {
-        "title": "Hanoi",
-        "latitude": 21.0341,
-        "longitude": 105.8372
-    }, {
-        "title": "Sanaa",
-        "latitude": 15.3556,
-        "longitude": 44.2081
-    }, {
-        "title": "Buenos Aires",
-        "latitude": -34.6118,
-        "longitude": -58.4173
-    }, {
-        "title": "Bridgetown",
-        "latitude": 13.0935,
-        "longitude": -59.6105
-    }, {
-        "title": "Belmopan",
-        "latitude": 17.2534,
-        "longitude": -88.7713
-    }, {
-        "title": "Sucre",
-        "latitude": -19.0421,
-        "longitude": -65.2559
-    }, {
-        "title": "Brasilia",
-        "latitude": -15.7801,
-        "longitude": -47.9292
-    }, {
-        "title": "Ottawa",
-        "latitude": 45.4235,
-        "longitude": -75.6979
-    }, {
-        "title": "Santiago",
-        "latitude": -33.4691,
-        "longitude": -70.642
-    }, {
-        "title": "Bogota",
-        "latitude": 4.6473,
-        "longitude": -74.0962
-    }, {
-        "title": "San Jose",
-        "latitude": 9.9402,
-        "longitude": -84.1002
-    }, {
-        "title": "Havana",
-        "latitude": 23.1333,
-        "longitude": -82.3667
-    }, {
-        "title": "Roseau",
-        "latitude": 15.2976,
-        "longitude": -61.39
-    }, {
-        "title": "Santo Domingo",
-        "latitude": 18.479,
-        "longitude": -69.8908
-    }, {
-        "title": "Quito",
-        "latitude": -0.2295,
-        "longitude": -78.5243
-    }, {
-        "title": "San Salvador",
-        "latitude": 13.7034,
-        "longitude": -89.2073
-    }, {
-        "title": "Guatemala",
-        "latitude": 14.6248,
-        "longitude": -90.5328
-    }, {
-        "title": "Ciudad de Mexico",
-        "latitude": 19.4271,
-        "longitude": -99.1276
-    }, {
-        "title": "Managua",
-        "latitude": 12.1475,
-        "longitude": -86.2734
-    }, {
-        "title": "Panama",
-        "latitude": 8.9943,
-        "longitude": -79.5188
-    }, {
-        "title": "Asuncion",
-        "latitude": -25.3005,
-        "longitude": -57.6362
-    }, {
-        "title": "Lima",
-        "latitude": -12.0931,
-        "longitude": -77.0465
-    }, {
-        "title": "Castries",
-        "latitude": 13.9972,
-        "longitude": -60.0018
-    }, {
-        "title": "Paramaribo",
-        "latitude": 5.8232,
-        "longitude": -55.1679
-    }, {
-        "title": "Washington D.C.",
-        "latitude": 38.8921,
-        "longitude": -77.0241
-    }, {
-        "title": "Montevideo",
-        "latitude": -34.8941,
-        "longitude": -56.0675
-    }, {
-        "title": "Caracas",
-        "latitude": 10.4961,
-        "longitude": -66.8983
-    }, {
-        "title": "Oranjestad",
-        "latitude": 12.5246,
-        "longitude": -70.0265
-    }, {
-        "title": "Cayenne",
-        "latitude": 4.9346,
-        "longitude": -52.3303
-    }, {
-        "title": "Plymouth",
-        "latitude": 16.6802,
-        "longitude": -62.2014
-    }, {
-        "title": "San Juan",
-        "latitude": 18.45,
-        "longitude": -66.0667
-    }, {
-        "title": "Algiers",
-        "latitude": 36.7755,
-        "longitude": 3.0597
-    }, {
-        "title": "Luanda",
-        "latitude": -8.8159,
-        "longitude": 13.2306
-    }, {
-        "title": "Porto-Novo",
-        "latitude": 6.4779,
-        "longitude": 2.6323
-    }, {
-        "title": "Gaborone",
-        "latitude": -24.657,
-        "longitude": 25.9089
-    }, {
-        "title": "Ouagadougou",
-        "latitude": 12.3569,
-        "longitude": -1.5352
-    }, {
-        "title": "Bujumbura",
-        "latitude": -3.3818,
-        "longitude": 29.3622
-    }, {
-        "title": "Yaounde",
-        "latitude": 3.8612,
-        "longitude": 11.5217
-    }, {
-        "title": "Bangui",
-        "latitude": 4.3621,
-        "longitude": 18.5873
-    }, {
-        "title": "Brazzaville",
-        "latitude": -4.2767,
-        "longitude": 15.2662
-    }, {
-        "title": "Kinshasa",
-        "latitude": -4.3369,
-        "longitude": 15.3271
-    }, {
-        "title": "Yamoussoukro",
-        "latitude": 6.8067,
-        "longitude": -5.2728
-    }, {
-        "title": "Djibouti",
-        "latitude": 11.5806,
-        "longitude": 43.1425
-    }, {
-        "title": "Cairo",
-        "latitude": 30.0571,
-        "longitude": 31.2272
-    }, {
-        "title": "Asmara",
-        "latitude": 15.3315,
-        "longitude": 38.9183
-    }, {
-        "title": "Addis Abeba",
-        "latitude": 9.0084,
-        "longitude": 38.7575
-    }, {
-        "title": "Libreville",
-        "latitude": 0.3858,
-        "longitude": 9.4496
-    }, {
-        "title": "Banjul",
-        "latitude": 13.4399,
-        "longitude": -16.6775
-    }, {
-        "title": "Accra",
-        "latitude": 5.5401,
-        "longitude": -0.2074
-    }, {
-        "title": "Conakry",
-        "latitude": 9.537,
-        "longitude": -13.6785
-    }, {
-        "title": "Bissau",
-        "latitude": 11.8598,
-        "longitude": -15.5875
-    }, {
-        "title": "Nairobi",
-        "latitude": -1.2762,
-        "longitude": 36.7965
-    }, {
-        "title": "Maseru",
-        "latitude": -29.2976,
-        "longitude": 27.4854
-    }, {
-        "title": "Monrovia",
-        "latitude": 6.3106,
-        "longitude": -10.8047
-    }, {
-        "title": "Tripoli",
-        "latitude": 32.883,
-        "longitude": 13.1897
-    }, {
-        "title": "Antananarivo",
-        "latitude": -18.9201,
-        "longitude": 47.5237
-    }, {
-        "title": "Lilongwe",
-        "latitude": -13.9899,
-        "longitude": 33.7703
-    }, {
-        "title": "Bamako",
-        "latitude": 12.653,
-        "longitude": -7.9864
-    }, {
-        "title": "Nouakchott",
-        "latitude": 18.0669,
-        "longitude": -15.99
-    }, {
-        "title": "Port Louis",
-        "latitude": -20.1654,
-        "longitude": 57.4896
-    }, {
-        "title": "Rabat",
-        "latitude": 33.9905,
-        "longitude": -6.8704
-    }, {
-        "title": "Maputo",
-        "latitude": -25.9686,
-        "longitude": 32.5804
-    }, {
-        "title": "Windhoek",
-        "latitude": -22.5749,
-        "longitude": 17.0805
-    }, {
-        "title": "Niamey",
-        "latitude": 13.5164,
-        "longitude": 2.1157
-    }, {
-        "title": "Abuja",
-        "latitude": 9.058,
-        "longitude": 7.4891
-    }, {
-        "title": "Kigali",
-        "latitude": -1.9441,
-        "longitude": 30.0619
-    }, {
-        "title": "Dakar",
-        "latitude": 14.6953,
-        "longitude": -17.4439
-    }, {
-        "title": "Freetown",
-        "latitude": 8.4697,
-        "longitude": -13.2659
-    }, {
-        "title": "Mogadishu",
-        "latitude": 2.0411,
-        "longitude": 45.3426
-    }, {
-        "title": "Pretoria",
-        "latitude": -25.7463,
-        "longitude": 28.1876
-    }, {
-        "title": "Mbabane",
-        "latitude": -26.3186,
-        "longitude": 31.141
-    }, {
-        "title": "Dodoma",
-        "latitude": -6.167,
-        "longitude": 35.7497
-    }, {
-        "title": "Lome",
-        "latitude": 6.1228,
-        "longitude": 1.2255
-    }, {
-        "title": "Tunis",
-        "latitude": 36.8117,
-        "longitude": 10.1761
-    }];
-    
-    }); // end am4core.ready()
-    </script>
-    
-    <!-- HTML -->
-    <div id="chartdiv"></div>
+
+    imageSeries.data = [
+      {
+        title: "Frankfurt",
+        latitude: 50.110924,
+        longitude: 8.682127
+      }
+    ];
+  }); // end am4core.ready()
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
