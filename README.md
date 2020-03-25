@@ -80,6 +80,8 @@ $ kubectl expose deployment webapp-demo --type=LoadBalancer --port=8088
 $ minikube service webapp-demo
 ```
 
+You may need to wait a some time until your deployment is ready, because it need to pull the images from the repository.
+
 ---
 
 ## CI/CD
@@ -109,6 +111,7 @@ To use concourse you need to have the fly CLI. You should follow the offical con
 
 ```
 $ mv ~/Downloads/fly /usr/local/bin
+$ chmod 755 /usr/local/bin/fly
 ```
 
 To test if it is working run.
@@ -117,11 +120,14 @@ To test if it is working run.
 $ fly -h
 ```
 
-Now you have to setup concourse such that you can use the CI/CD pipeline. You clone this repository and login your fly CLI.
+If you use a MAC and you get a popup message with "fly cannot be ioened because developer cannot be verified" close the popup and go to Settings->Security & Privacy -> General -> on the bottom click "allow Anyway" and retry to run the command above and click open.
+
+Now you have to setup concourse such that you can use the CI/CD pipeline. You clone this repository and login your fly CLI. Follow the instruction on the screen.
 
 ```
+$ cd .. //if you are still in concourse-docker directory
 $ git clone https://github.com/tthebst/demoapp.git
-$ cd concourse
+$ cd demoapp/concourse
 $ fly --target demoapp login --team-name main --concourse-url http://localhost:8080
 ```
 
@@ -135,7 +141,7 @@ With the docker variables configured we are now ready to run the pipeline.
 $ fly -t demoapp set-pipeline --pipeline demo-pipeline --config pipeline.yml -l vars.yml
 ```
 
-You should now follow the instructions on the screen and unpause the pipeline in the web ui. After the pipeline is run you should see the pushed images in the <a href="https://hub.docker.com/">Docker container repository</a>.
+You should now follow the instructions on the screen and unpause the pipeline in the web ui. If you click on the pipeline you can see the pipeline and how it runs. After the pipeline is run you should see the pushed images in the <a href="https://hub.docker.com/">Docker container repository</a>.
 
 If you provided a fork of this repo in the <b>vars.yml</b> file you can now change something in the repo and push your changes. This will automatically trigger a new pipeline exection and the updated images will be pushed to the Docker repository.
 
