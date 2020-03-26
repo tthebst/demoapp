@@ -73,7 +73,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/tthebst/demoapp/master/kube
 
 To access your the created Kubernetes deployment you need to add an external loadbalancer. This differs between each of the cloud providers. Please refer to there documentation on how to expose a deployment.
 
-If you are running on mnikube you can run the these commands to access your local cluster. A new browser shoudl open after running after the last command if not follow the instructions on the screen.
+If you are running on mnikube you can run the these commands to access your local cluster. A new browser should open after running after the last command if not follow the instructions on the screen.
 
 ```
 $ kubectl expose deployment webapp-demo --type=LoadBalancer --port=8088
@@ -120,7 +120,7 @@ To test if it is working run.
 $ fly -h
 ```
 
-If you use a MAC and you get a popup message with "fly cannot be ioened because developer cannot be verified" close the popup and go to Settings->Security & Privacy -> General -> on the bottom click "allow Anyway" and retry to run the command above and click open.
+If you use a MAC and you get a popup message with "fly cannot be opened because developer cannot be verified" close the popup and go to Settings->Security & Privacy -> General -> on the bottom click "allow Anyway" and retry to run the command above and click open.
 
 Now you have to setup concourse such that you can use the CI/CD pipeline. You clone this repository and login your fly CLI. Follow the instruction on the screen.
 

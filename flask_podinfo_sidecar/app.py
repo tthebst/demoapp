@@ -2,7 +2,7 @@ from flask import Flask,jsonify,make_response,request
 import os
 import requests
 import ipinfo
-
+import urllib
 
 app = Flask(__name__)
 
@@ -95,11 +95,94 @@ def get_podinfo():
     podinfo['public_ip']=public_ip
 
 
+
+    #get information about instance
+    cloud,region=cloud_info()
+
+    podinfo['labels']['cloud']=cloud
+    podinfo['labels']['region']=region
+
+
     #create final response with CORS headers
     response=jsonify(podinfo)
     response.headers.add("Access-Control-Allow-Origin", "*")
 
     return response
+
+
+def cloud_info():
+    """Get information about instance"""
+    on_ec2=is_ec2_instance()
+    on_gcp=is_gcp_instance()
+    on_azure=is_azure_instance()
+
+    if on_ec2:
+        region=get_aws_region()
+        cloud="aws"
+
+    elif on_gcp:
+        region=get_gcp_region()
+        cloud="gcp"
+    elif on_azure:
+        #to do implementation
+        pass    
+    else:
+        cloud="private"
+        region="unknown"
+
+
+    return (cloud,region)
+    
+
+
+def get_aws_region():
+    req=urllib.request.Request('http://169.254.169.254/latest/meta-data/hostname')
+    result =urllib.request.urlopen(req)
+    hostname = response.read().decode()
+    region="-".join(hostnmae.split(".")[1].split("-")[:2])
+    return region
+
+
+def get_gcp_region():
+    req=urllib.request.Request('http://169.254.169.254/computeMetadata/v1/instance/hostname',headers={"Metadata-Flavor": "Google"})
+    result =urllib.request.urlopen(req)
+    hostname = response.read().decode()
+    region=hostnmae.split(".")[1]
+    return region
+
+
+def is_ec2_instance():
+    """Check if an instance is running on AWS."""
+    result = False
+    meta = 'http://169.254.169.254/latest/meta-data/public-ipv4'
+    try:
+        result = urllib.request.urlopen(meta).status == 200
+    except ConnectionError:
+        return result
+    return result
+
+def is_gcp_instance():
+    """Check if an instance is running on GCP."""
+    result = False
+    req=urllib.request.Request('http://169.254.169.254/computeMetadata/v1/instance/hostname',headers={"Metadata-Flavor": "Google"})
+    try:
+        result = urllib.request.urlopen(req).status == 200
+    except ConnectionError:
+        return result
+    return result
+
+
+#still need to implement
+def is_azure_instance():
+    """Check if an instance is running on AZURE."""
+    result = False
+    req=urllib.request.Request('http://169.254.169.254/metadata/instance?api-version=2017-04-02',headers={"Metadata": "true"})
+    try:
+        result = urllib.request.urlopen(req).status == 200
+    except ConnectionError:
+        return result
+    return result
+
 
 
 if __name__ == "__main__":
