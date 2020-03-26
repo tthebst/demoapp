@@ -18,7 +18,7 @@ def test_annotations(client):
 def test_labels(client):
   response = client.get('/v1/get_podinfo')
   data=response.get_json()
-  assert not data['labels']
+  assert data['labels']['cloud']=="private" and data['labels']['region']=="unknown"
 
 def test_os(client):
   response = client.get('/v1/get_podinfo')

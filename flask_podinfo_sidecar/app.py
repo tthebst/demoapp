@@ -156,7 +156,7 @@ def is_ec2_instance():
     result = False
     meta = 'http://169.254.169.254/latest/meta-data/public-ipv4'
     try:
-        result = urllib.request.urlopen(meta).status == 200
+        result = urllib.request.urlopen(meta,timeout=2).status == 200
     except Exception:
         return result
     return result
@@ -166,7 +166,7 @@ def is_gcp_instance():
     result = False
     req=urllib.request.Request('http://169.254.169.254/computeMetadata/v1/instance/hostname',headers={"Metadata-Flavor": "Google"})
     try:
-        result = urllib.request.urlopen(req).status == 200
+        result = urllib.request.urlopen(req,timeout=2).status == 200
     except Exception:
         return result
     return result
@@ -178,7 +178,7 @@ def is_azure_instance():
     result = False
     req=urllib.request.Request('http://169.254.169.254/metadata/instance?api-version=2017-04-02',headers={"Metadata": "true"})
     try:
-        result = urllib.request.urlopen(req).status == 200
+        result = urllib.request.urlopen(req,timeout=2).status == 200
     except Exception:
         return result
     return result
