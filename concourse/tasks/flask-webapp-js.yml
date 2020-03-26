@@ -10,5 +10,5 @@ run:
   path: sh
   args:
   - -exc
-  - cd flask_webapp && npm install --save-dev jest &&  npm run test
+  - cd demoapp/flask_webapp && npm install --save-dev jest &&  npm run test
 
