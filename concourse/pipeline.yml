@@ -29,6 +29,8 @@ jobs:
     file: demoapp/concourse/tasks/flask-test-podinfo-sidecat.yml
   - task: flask-test-webapp
     file: demoapp/concourse/tasks/flask-test-webapp.yml
+  - task: flask-test-webapp-javascript
+    file: demoapp/concourse/tasks/flask-webapp-js.yml
 - name: build
   serial: true
   plan:
