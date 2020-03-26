@@ -16,11 +16,8 @@ def get_podinfo():
     except Exception as e:
         print(e,flush=True)
         print("failed to get podinff use dumuuy",flush=True)
-        podinfo={'annotations': {}, 'hostip': '', 'labels': {}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':''}
+        podinfo={'success': True, 'annotations': {}, 'hostip': '', 'labels': {'cloud': "aws",'code': "Frankfurt"}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':'123.2.2.2.','pub_ip_info': {'city': 'Zug', 'location': "-1.3,23.3"}}
     return podinfo
-
-
-
 
 
 @app.route('/' ,methods=["GET"])
@@ -42,8 +39,6 @@ def machinelearning():
     #get information about pod in which this applications runs
     podinfo=get_podinfo()
     print(podinfo,flush=True)
-
-
     return render_template('mldemo.html',podinfo=podinfo)
 
 
@@ -53,8 +48,6 @@ def home():
     #get information about pod in which this applications runs
     podinfo=get_podinfo()
     print(podinfo,flush=True)
-
-
     return render_template('home.html',podinfo=podinfo)
 
 @app.route('/about' ,methods=["GET"])

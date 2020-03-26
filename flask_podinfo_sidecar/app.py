@@ -20,6 +20,7 @@ def get_podinfo():
 
     #get podinfo data form system
     podinfo={}
+    podinfo['success']=True
     try:
         podinfo['os']=os.name
     except:
@@ -40,6 +41,7 @@ def get_podinfo():
         podinfo["labels"]=labels
     except FileNotFoundError as fn:
         labels={}
+        podinfo['success']=False
         podinfo["labels"]=labels
         print(fn)
 
@@ -56,6 +58,7 @@ def get_podinfo():
         podinfo["annotations"]=annotations
     except FileNotFoundError as fn:
         annotations={}
+        podinfo['success']=False
         podinfo["annotations"]=annotations
         print(fn)
 
@@ -65,6 +68,7 @@ def get_podinfo():
             name=f.readline()
         podinfo["name"]=name
     except FileNotFoundError as fn:
+        podinfo['success']=False
         podinfo["name"]=""
         print(fn)
 
@@ -84,6 +88,7 @@ def get_podinfo():
         pub_ip_info['Organistion']=details.org
         podinfo['pub_ip_info']=pub_ip_info
     except Exception as e:
+        podinfo['success']=False
         print(e)
         public_ip="not available"
 
