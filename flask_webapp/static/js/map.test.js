@@ -5,13 +5,13 @@ test_aws_frankfurt = {
   title: "Frankfurt",
   latitude: 50.110924,
   longitude: 8.68212,
-  code: "eu-central-1"
+  region: "eu-central-1"
 };
 test_aws_frankfurt_podinfo = {
   success: true,
   annotations: {},
   hostip: "",
-  labels: { cloud: "aws", code: "eu-central-1" },
+  labels: { cloud: "aws", region: "eu-central-1" },
   name: "Something went wrong...",
   nodename: "",
   os: "",
@@ -31,13 +31,13 @@ test_gcp_sao = {
   title: "Sao Paulo",
   latitude: -23.533773,
   longitude: -46.62529,
-  code: "southamerica-east1"
+  region: "southamerica-east1"
 };
 test_gcp_sao_podinfo = {
   success: true,
   annotations: {},
   hostip: "",
-  labels: { cloud: "gcp", code: "southamerica-east1" },
+  labels: { cloud: "gcp", region: "southamerica-east1" },
   name: "",
   nodename: "",
   os: "",
@@ -59,7 +59,7 @@ test_nocloud_nopublicip_podinfo = {
   success: true,
   annotations: {},
   hostip: "",
-  labels: { cloud: "vmware", code: "" },
+  labels: { cloud: "vmware", region: "" },
   name: "Something went wrong...",
   nodename: "",
   os: "",
@@ -83,7 +83,7 @@ test_nocloud_publicip_podinfo = {
   success: true,
   annotations: {},
   hostip: "",
-  labels: { cloud: "vmware", code: "" },
+  labels: { cloud: "vmware", region: "" },
   name: "Something went wrong...",
   nodename: "",
   os: "",
