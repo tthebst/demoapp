@@ -102,21 +102,21 @@ function get_location(podinfo) {
   if (podinfo["success"] == true) {
     if (podinfo["labels"]["cloud"] == "gcp") {
       for (const loc of gcp_loc) {
-        if (loc["code"] == podinfo["labels"]["code"]) {
+        if (loc["code"] == podinfo["labels"]["region"]) {
           console.log(loc);
           return loc;
         }
       }
     } else if (podinfo["labels"]["cloud"] == "aws") {
       for (const loc of aws_loc) {
-        if (loc["code"] == podinfo["labels"]["code"]) {
+        if (loc["code"] == podinfo["labels"]["region"]) {
           console.log(loc);
           return loc;
         }
       }
     } else if (podinfo["labels"]["cloud"] == "azure") {
       for (const loc of azure_loc) {
-        if (loc["code"] == podinfo["labels"]["code"]) {
+        if (loc["code"] == podinfo["labels"]["region"]) {
           console.log(loc);
           return loc;
         }

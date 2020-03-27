@@ -16,7 +16,7 @@ def get_podinfo():
     except Exception as e:
         print(e,flush=True)
         print("failed to get podinff use dumuuy",flush=True)
-        podinfo={'success': True, 'annotations': {}, 'hostip': '', 'labels': {'cloud': "aws",'code': "eu-central-1"}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':'123.2.2.2.','pub_ip_info': {'city': 'Zug', 'location': "-1.3,23.3"}}
+        podinfo={'success': False, 'annotations': {}, 'hostip': '', 'labels': {'cloud': "aws",'code': "eu-central-1"}, 'name': 'Something went wrong...', '': 'm01', 'os': '', 'podip': 'Try to refresh Page','public_ip':'123.2.2.2.','pub_ip_info': {'city': 'Zug', 'location': "-1.3,23.3"}}
     return podinfo
 
 

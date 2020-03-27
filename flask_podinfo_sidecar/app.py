@@ -88,7 +88,6 @@ def get_podinfo():
         pub_ip_info['Organistion']=details.org
         podinfo['pub_ip_info']=pub_ip_info
     except Exception as e:
-        podinfo['success']=False
         print(e)
         public_ip="not available"
 
@@ -138,16 +137,16 @@ def cloud_info():
 def get_aws_region():
     req=urllib.request.Request('http://169.254.169.254/latest/meta-data/hostname')
     result =urllib.request.urlopen(req)
-    hostname = response.read().decode()
-    region="-".join(hostname.split(".")[1].split("-")[:2])
+    hostname = result.read().decode()
+    region=hostname.split(".")[1]
     return region
 
 
 def get_gcp_region():
     req=urllib.request.Request('http://169.254.169.254/computeMetadata/v1/instance/hostname',headers={"Metadata-Flavor": "Google"})
     result =urllib.request.urlopen(req)
-    hostname = response.read().decode()
-    region=hostname.split(".")[1]
+    hostname = result.read().decode()
+    region="-".join(hostname.split(".")[1].split("-")[:2])
     return region
 
 
