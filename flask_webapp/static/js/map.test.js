@@ -97,3 +97,39 @@ test("no public cloud public ip", () => {
     test_nocloud_publicip
   );
 });
+
+test_gcp_singapore = {
+  title: "Iowa",
+  latitude: 41.619549,
+  longitude: -93.598022,
+  region: "us-central1"
+};
+test_gcp_singapore_podinfo = {
+  annotations: {
+    build: "best",
+    builder: "tim",
+    "kubernetes.io/config.seen": "2020-03-27T13:48:34.388645693Z",
+    "kubernetes.io/config.source": "api",
+    "kubernetes.io/limit-ranger":
+      "LimitRanger plugin set: cpu request for container webapp; cpu request for container flask-podinfo-sidecar"
+  },
+  hostip: "10.128.0.5",
+  labels: {
+    app: "webapp",
+    cloud: "gcp",
+    "pod-template-hash": "c7895f7df",
+    region: "us-central1"
+  },
+  name: "webapp-demo-c7895f7df-7v9bp",
+  nodename: "gke-cluster-us-default-pool-46444157-cfj1",
+  os: "posix",
+  podip: "10.4.0.16",
+  public_ip: "not available",
+  success: true
+};
+
+test("gcp singapore ", () => {
+  expect(map.get_location(test_gcp_singapore_podinfo)).toStrictEqual(
+    test_gcp_singapore
+  );
+});

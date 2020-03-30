@@ -102,7 +102,10 @@ function get_location(podinfo) {
   if (podinfo["success"] == true) {
     if (podinfo["labels"]["cloud"] == "gcp") {
       for (const loc of gcp_loc) {
+        console.log(podinfo["labels"]["region"]);
+        console.log(loc["region"]);
         if (loc["region"] == podinfo["labels"]["region"]) {
+          console.log("GCP");
           console.log(loc);
           return loc;
         }
@@ -110,6 +113,7 @@ function get_location(podinfo) {
     } else if (podinfo["labels"]["cloud"] == "aws") {
       for (const loc of aws_loc) {
         if (loc["region"] == podinfo["labels"]["region"]) {
+          console.log("AWS");
           console.log(loc);
           return loc;
         }
@@ -117,6 +121,7 @@ function get_location(podinfo) {
     } else if (podinfo["labels"]["cloud"] == "azure") {
       for (const loc of azure_loc) {
         if (loc["region"] == podinfo["labels"]["region"]) {
+          console.log("AZUE");
           console.log(loc);
           return loc;
         }
@@ -128,6 +133,7 @@ function get_location(podinfo) {
           latitude: 25,
           longitude: 0.1
         };
+        console.log("UNKNOWN");
         return loc;
       } else {
         loc = {
@@ -139,6 +145,7 @@ function get_location(podinfo) {
             podinfo["pub_ip_info"]["location"].split(",")[1]
           )
         };
+        console.log("SOMEHWERE");
         return loc;
       }
     }
@@ -151,8 +158,6 @@ function get_location(podinfo) {
     return loc;
   }
 }
-
-module.exports.get_location = get_location;
 
 aws_loc = [
   {
@@ -523,3 +528,5 @@ azure_loc = [
     longitude: 139.839478
   }
 ];
+
+module.exports.get_location = get_location;
