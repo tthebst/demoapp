@@ -3,6 +3,7 @@
 <script src="https://www.amcharts.com/lib/4/maps.js"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script type=text/javascript src="{{url_for('static', filename='js/datacenter_location.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='js/map.js') }}"></script>
 <script>
     var podinfo = {{ podinfo|tojson }};
