@@ -82,10 +82,10 @@ def get_podinfo():
         access_token = os.getenv("accesstoken_ipinfo")
         handler = ipinfo.getHandler(access_token)
         details = handler.getDetails(public_ip)
-        pub_ip_info['Country']=details.country_name
+        pub_ip_info['country']=details.country_name
         pub_ip_info['city']=details.city
-        pub_ip_info['Location']=details.loc
-        pub_ip_info['Organistion']=details.org
+        pub_ip_info['location']=details.loc
+        pub_ip_info['organisation']=details.org
         podinfo['pub_ip_info']=pub_ip_info
     except Exception as e:
         print(e)
