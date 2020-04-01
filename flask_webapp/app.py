@@ -14,6 +14,11 @@ def get_podinfo():
     try:
         resp = requests.get("http://localhost:8080/v1/get_podinfo")
         podinfo = resp.json()
+
+    except requests.exceptions.ConnectionError as conerr:
+        print("Connection Error: {0}".format(conerr), flush=True)
+        podinfo = {'success': False, 'annotations': {}, 'hostip': '', 'labels': {'cloud': "aws", 'code': "eu-central-1"}, 'name': 'Something went wrong...',
+                   '': 'm01', 'os': '', 'podip': 'Try to refresh Page', 'public_ip': '123.2.2.2.', 'pub_ip_info': {'city': 'Zug', 'location': "-1.3,23.3"}}
     except json.decoder.JSONDecodeError as err:
         print("JSON Decode error: {0}".format(err), flush=True)
         podinfo = {'success': False, 'annotations': {}, 'hostip': '', 'labels': {'cloud': "aws", 'code': "eu-central-1"}, 'name': 'Something went wrong...',
