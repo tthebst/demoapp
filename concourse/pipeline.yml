@@ -34,19 +34,16 @@ jobs:
 - name: security
   plan:
   - get: demoapp
+    passed: [tests]
     trigger: true
   - task: check code formatting
     file: demoapp/concourse/tasks/check-code.yml
   - task: check for security flaws in python code
     file: demoapp/concourse/tasks/check-security.yml
-
-
-
 - name: build
-  serial: true
   plan:
   - get: demoapp
-    passed: [tests]
+    passed: [security]
     trigger: true
   - put: flask-webapp
     params:
