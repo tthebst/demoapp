@@ -1,6 +1,7 @@
 const map = require("./map");
-
+const location = require("./datacenter_location");
 //test aws Frankfurt
+
 test_aws_frankfurt = {
   title: "Frankfurt",
   latitude: 50.110924,

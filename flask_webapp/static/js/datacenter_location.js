@@ -367,3 +367,9 @@ azure_loc = [
     longitude: 139.839478
   }
 ];
+
+try {
+  module.exports.gcp_loc = gcp_loc;
+  module.exports.aws_loc = aws_loc;
+  module.exports.azure_loc = azure_loc;
+} catch (e) {}
