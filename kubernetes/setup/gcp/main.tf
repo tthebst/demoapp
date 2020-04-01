@@ -1,3 +1,8 @@
+
+# ---------------------------------------------------------------------------------------------------------------------
+# PREPARE PROVIDERS
+# ---------------------------------------------------------------------------------------------------------------------
+
 provider "google-ch" {
   credentials = file("terraform-test-key.json")
   project     = "terraform-test-270912"
@@ -11,7 +16,10 @@ provider "google-us" {
 
 
 
-//custer USA
+# ---------------------------------------------------------------------------------------------------------------------
+# CLUSTER DEFINITION
+# ---------------------------------------------------------------------------------------------------------------------
+
 resource "google_container_cluster" "cluster-us" {
   name     = "my-gke-cluster-us"
   location = "us-central1"
@@ -35,7 +43,7 @@ resource "google_container_cluster" "cluster-us" {
 resource "google_container_node_pool" "us-nodes" {
   name       = "my-node-pool-us"
   location   = "us-central1"
-  cluster    = google_container_cluster.primary.name
+  cluster    = google_container_cluster.cluster-us.name
   node_count = 1
   node_config {
     preemptible  = true
@@ -50,6 +58,15 @@ resource "google_container_node_pool" "us-nodes" {
     ]
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 //custer USA

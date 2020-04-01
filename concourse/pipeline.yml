@@ -31,6 +31,17 @@ jobs:
     file: demoapp/concourse/tasks/flask-test-webapp.yml
   - task: flask-test-webapp-javascript
     file: demoapp/concourse/tasks/flask-webapp-js.yml
+- name: security
+  plan:
+  - get: demoapp
+    trigger: true
+  - task: check code formatting
+    file: demoapp/concourse/tasks/check-code.yml
+  - task: check for security flaws in python code
+    file: demoapp/concourse/tasks/check-security.yml
+
+
+
 - name: build
   serial: true
   plan:

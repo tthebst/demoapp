@@ -2,3 +2,4 @@ ipinfo
 pytest
 Flask
 requests
+pylint

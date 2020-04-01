@@ -3,3 +3,5 @@ __pycache__/
 concourse/concourse-docker/
 concourse/vars-tim.yml
 .DS_Store
+.vscode/
+.pytype
