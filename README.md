@@ -203,7 +203,7 @@ If you want to connect the webapp the container repository link in the kubernete
 
 ### Webapp
 
-The webapp consists of two parts. First there is the main web application thats serves the the webpage and includes all the logic. Second there is a so called sidecar application, which gets deployed alongside the main application in a Kubernetes Pod. The sidecar is a small api server which is only available inside the pod and provides details about the current Pod. This is the Information, which you see on the right hand side of the webpage.
+The webapp consists of two parts. First there is the main web application thats serves the the webpage and includes all the logic. Second there is a so called sidecar application, which gets deployed alongside the main application in a Kubernetes Pod. The sidecar is a small api server which is only available inside the pod and provides details about the current Pod. This is the Information, which you see on the right hand side of the webpage. There is a swagger api documentation available for the side car.  <a href="https://app.swaggerhub.com/apis/tthebst/podinfo/1.0.0-oas3">API docd</a>
 
 ### CI/CD concourse
 
