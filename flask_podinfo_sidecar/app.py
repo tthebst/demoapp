@@ -3,15 +3,21 @@ import urllib
 import requests
 import ipinfo
 
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, make_response, request, render_template
 
 
 app = Flask(__name__)
 
 
+@app.route('/docs', methods=["GET"])
+def get_docs():
+
+    return render_template('swagger.html')
+
+
 @app.route('/v1/get_podinfo', methods=["GET", "OPTIONS"])
 def get_podinfo():
-    """Gathers information about environment in which pod is running
+    """ Gathers information about environment in which pod is running
         Return dictionary with various information
 
     """
@@ -184,4 +190,4 @@ def is_azure_instance():
 
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", port=8080)
+    app.run("0.0.0.0", port=8090)
