@@ -37,8 +37,7 @@ This repository includes the source code for my VMware demo application. It shou
 ---
 
 ### Demo
-
-![Alt Text]("./graphics/webapp-arch.gif")
+<img src="./graphics/demo.gif" width="80%" />
 
 ## Webapp on Kubernetes
 
