@@ -11,6 +11,7 @@ This repository includes the source code for my VMware demo application. It shou
 - [Product Demo](#product-demo)
     - [Table of Contents](#table-of-contents)
     - [Architecture Overview](#architecture-overview)
+    - [Demo](#demo)
   - [Webapp on Kubernetes](#webapp-on-kubernetes)
     - [Requirements](#requirements)
     - [Setup](#setup)
@@ -34,6 +35,10 @@ This repository includes the source code for my VMware demo application. It shou
 <img style="width: 100%;" src="./graphics/webapp-arch.png" alt="FVCproductions">
 
 ---
+
+### Demo
+
+![Alt Text]("./graphics/webapp-arch.gif")
 
 ## Webapp on Kubernetes
 

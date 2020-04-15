@@ -156,7 +156,7 @@ def get_gcp_region():
 def is_ec2_instance():
     """Check if an instance is running on AWS."""
     result = False
-    meta = 'http://169.254.169.254/latest/meta-data/public-ipv4'
+    meta = 'http://169.254.169.254/latest/meta-data/hostname'
     try:
         result = urllib.request.urlopen(meta, timeout=2).status == 200  # nosec
     except Exception:
