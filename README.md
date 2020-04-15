@@ -37,7 +37,7 @@ This repository includes the source code for my VMware demo application. It shou
 ---
 
 ### Demo
-<img src="./graphics/demo.gif" width="80%" />
+<img src="https://my-personal-website-tim.s3.eu-central-1.amazonaws.com/demo.gif" width="80%" />
 
 ## Webapp on Kubernetes
 
