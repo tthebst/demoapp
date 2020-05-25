@@ -4,6 +4,9 @@ RUN pip3 install Flask gunicorn requests
 
 COPY . /flask_webapp
 
+
+RUN pip3 install -r /flask_webapp/requirements.txt
+
 WORKDIR /flask_webapp
 
 EXPOSE 8088

@@ -3,3 +3,4 @@ pytest
 Flask
 requests
 pylint
+wavefront-pyformance

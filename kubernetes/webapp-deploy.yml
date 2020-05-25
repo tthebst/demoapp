@@ -5,7 +5,7 @@ metadata:
   labels:
     app: lol
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: webapp
@@ -25,6 +25,12 @@ spec:
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8088
+          env:
+            - name: accesstoken_wavefront
+              valueFrom:
+                secretKeyRef:
+                  name: wavefront-key
+                  key: wavefront_accesskey
         - name: flask-podinfo-sidecar
           image: tthebst/flask-podinfo-sidecar
           imagePullPolicy: "Always"

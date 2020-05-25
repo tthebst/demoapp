@@ -2,7 +2,7 @@ import os
 import urllib
 import requests
 import ipinfo
-
+import json
 from flask import Flask, jsonify, make_response, request, render_template
 
 
@@ -137,10 +137,11 @@ def cloud_info():
 
 def get_aws_region():
     req = urllib.request.Request(
-        'http://169.254.169.254/latest/meta-data/hostname')  # nosec
+        'http://169.254.169.254/latest/dynamic/instance-identity/document')  # nosec
     result = urllib.request.urlopen(req)  # nosec
     hostname = result.read().decode()
-    region = hostname.split(".")[1]
+    host_dic = json.loads(hostname)
+    region = host_dic['region']
     return region
 
 
@@ -149,6 +150,7 @@ def get_gcp_region():
         'http://169.254.169.254/computeMetadata/v1/instance/hostname', headers={"Metadata-Flavor": "Google"})  # nosec
     result = urllib.request.urlopen(req)  # nosec
     hostname = result.read().decode()
+
     region = "-".join(hostname.split(".")[1].split("-")[:2])
     return region
 
