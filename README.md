@@ -51,11 +51,11 @@ Follow these instruction to run the webapp on a Kuberenetes cluster.
   - <a href="https://cloud.google.com/kubernetes-engine">GKE</a>
   - <a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS</a>
   - <a href="https://aws.amazon.com/eks/">EKS</a>
-- <a href="https://ipinfo.io">InfoIp Access Key</a> (Optional)
+- <a href="https://ipinfo.io">IPInfo Access Key</a> (Optional)
 
 ### Setup
 
-To extract public IP information from the pod you need an IpInfo key. To set this up you run following instruction with your api key.
+To extract public IP information from the pod you need an IPInfo key. To set this up you run following instruction with your api key.
 
 ```
 $ kubectl create secret generic ipinfo-key --from-literal=ipinfo_accesskey=yourapikey

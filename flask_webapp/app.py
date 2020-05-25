@@ -2,44 +2,11 @@ import sys
 import json
 from flask import Flask, render_template, redirect
 import requests
-from wavefront_pyformance import tagged_registry
-from wavefront_pyformance import wavefront_reporter
 import os
 import pyformance
-from wavefront_pyformance import delta
 from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
-
-# cloudwatch variables
-server = "https://vmware.wavefront.com"
-token = os.getenv("accesstoken_wavefront")
-
-
-# threadpool for background thread wavefront
-executor = ThreadPoolExecutor()
-
-metrics = {}
-reg = tagged_registry.TaggedRegistry()
-c1 = reg.counter('machinelearningDemoRequests')
-metrics['machinelearning'] = c1
-c2 = reg.counter('landingDemoRequests')
-metrics['landing'] = c2
-c3 = reg.counter('multicloudDemoRequests')
-metrics['multicloud'] = c3
-
-
-def cloudwatch_metric(demoapp):
-    counter = metrics[demoapp]
-    counter.inc()
-
-    wf_proxy_reporter = wavefront_reporter.WavefrontDirectReporter(
-        server=server, token=token, registry=reg,
-        source='demoapp-webapp-'+demoapp,
-        prefix='timDemoappMetrics.'+demoapp+'.',
-        reporting_interval=10)
-
-    wf_proxy_reporter.report_now()
 
 
 def get_podinfo():
@@ -81,9 +48,6 @@ def multicloud():
     Multicloud demo of webapp
     """
 
-    # add multicloud demo request to cloudwatch
-    executor.submit(cloudwatch_metric, "multicloud")
-
     # get information about pod in which this applications runs
     podinfo = get_podinfo()
     print(podinfo, flush=True)
@@ -96,9 +60,6 @@ def machinelearning():
     Machine Learning demo of webapp
     """
 
-    # add machinelearning demo request to cloudwatch
-    executor.submit(cloudwatch_metric, "machinelearning")
-
     # get information about pod in which this applications runs
     podinfo = get_podinfo()
     print(podinfo, flush=True)
@@ -110,9 +71,6 @@ def home():
     """
     Landing Page of webapp
     """
-
-    # add landing page visitor request to cloudwatch
-    executor.submit(cloudwatch_metric, "landing")
 
     # get information about pod in which this applications runs
     podinfo = get_podinfo()
